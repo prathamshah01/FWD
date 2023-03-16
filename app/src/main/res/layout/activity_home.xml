@@ -10,22 +10,21 @@
         android:id="@+id/BtnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="72dp"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/introduction" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="204dp"
-        android:layout_height="226dp"
+        android:layout_width="0dp"
+        android:layout_height="191dp"
         android:layout_marginStart="145dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="145dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -35,12 +34,29 @@
         android:layout_width="0dp"
         android:layout_height="29dp"
         android:layout_marginStart="98dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="99dp"
         android:text="Already a user ? Click here to login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BtnRegister" />
+
+    <TextView
+        android:id="@+id/introduction"
+        android:layout_width="0dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:text="When we waste food, we waste the labour, effort, investment and precious resources (like water, seeds, feed, etc.) that go into producing it, not to mention the resources that go into transporting and processing it. In short, wasting food increases greenhouse gas emissions and contributes to climate change.Join us in the inisiative down here."
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:emojiCompatEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
