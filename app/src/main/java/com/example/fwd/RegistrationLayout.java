@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 public class RegistrationLayout extends AppCompatActivity {
 
+    //private RegistrationLayout
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
