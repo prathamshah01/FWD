@@ -41,5 +41,4 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 }
