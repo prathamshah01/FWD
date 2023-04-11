@@ -22,8 +22,8 @@ public class LoginActivity extends AppCompatActivity {
         binding.txtRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),RegistrationLayout.class);
-                    startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), RegistrationLayout.class);
+                startActivity(intent);
             }
         });
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
