@@ -13,7 +13,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
 
 
@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent=new Intent(SplashActivity.this,Home.class);
+                Intent intent=new Intent(SplashActivity.this,NavDrawerLayout.class);
                 startActivity(intent);
                 finish();
             }
