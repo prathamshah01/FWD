@@ -39,6 +39,6 @@ public class Home extends AppCompatActivity {
     public void openNewActivity(){
         Intent intent = new Intent(this,RegistrationLayout.class);
         startActivity(intent);
-        finish();
+        
     }
 }

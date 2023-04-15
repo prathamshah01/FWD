@@ -54,12 +54,12 @@ public class NavDrawerLayout extends AppCompatActivity {
                     loadFragment(new HomeFragment());
 
 
+                } else if (id == R.id.navHistory) {
+                    loadFragment(new HistoryFragment());
+
+
                 } else if (id == R.id.navFeedback) {
                     Toast.makeText(NavDrawerLayout.this, "Baki che...", Toast.LENGTH_SHORT).show();
-
-                } else if (id == R.id.navHistory) {
-                    Toast.makeText(NavDrawerLayout.this, "Baki che...", Toast.LENGTH_SHORT).show();
-
 
                 } else if (id == R.id.navRecommend) {
                     Toast.makeText(NavDrawerLayout.this, "Baki che...", Toast.LENGTH_SHORT).show();
