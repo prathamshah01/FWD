@@ -25,6 +25,7 @@ public class RegistrationLayout extends AppCompatActivity {
             public void onClick(View view) {
                 Intent homeScreen = new Intent(RegistrationLayout.this,NavDrawerLayout.class);
                 startActivity(homeScreen);
+//                finish();
             }
         });
         binding.txtRegLogin.setOnClickListener(new View.OnClickListener() {
@@ -32,6 +33,7 @@ public class RegistrationLayout extends AppCompatActivity {
             public void onClick(View view) {
                 Intent login = new Intent(RegistrationLayout.this,LoginActivity.class);
                 startActivity(login);
+
             }
         });
     }
