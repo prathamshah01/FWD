@@ -62,7 +62,7 @@ public class NavDrawerLayout extends AppCompatActivity {
                     Toast.makeText(NavDrawerLayout.this, "Baki che...", Toast.LENGTH_SHORT).show();
 
                 } else if (id == R.id.navRecommend) {
-                    Toast.makeText(NavDrawerLayout.this, "Baki che...", Toast.LENGTH_SHORT).show();
+                    loadFragment(new ShareFragment());
 
 
                 } else if (id == R.id.navSettings) {
