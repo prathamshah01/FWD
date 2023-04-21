@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -59,10 +60,16 @@ public class NavDrawerLayout extends AppCompatActivity {
 
 
                 } else if (id == R.id.navFeedback) {
-                    Toast.makeText(NavDrawerLayout.this, "Baki che...", Toast.LENGTH_SHORT).show();
+                    loadFragment(new FeedbackFragment());
 
                 } else if (id == R.id.navRecommend) {
-                    loadFragment(new ShareFragment());
+//                    loadFragment(new ShareFragment());
+
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Food Shouldn't  be wasted");
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
 
 
                 } else if (id == R.id.navSettings) {
