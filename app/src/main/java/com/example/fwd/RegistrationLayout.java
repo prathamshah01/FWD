@@ -8,10 +8,24 @@ import android.view.View;
 
 import com.example.fwd.databinding.ActivityLoginBinding;
 import com.example.fwd.databinding.ActivityRegistrationLayoutBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegistrationLayout extends AppCompatActivity {
 
     private ActivityRegistrationLayoutBinding binding;
+    private String Name,Number,Email,Password,ConfirmPass;
+    private FirebaseAuth mAuth;
+
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            currentUser.reload();
+        }
+    }
+
 
     //private RegistrationLayout
     @Override
@@ -23,11 +37,15 @@ public class RegistrationLayout extends AppCompatActivity {
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent homeScreen = new Intent(RegistrationLayout.this,NavDrawerLayout.class);
                 startActivity(homeScreen);
-//                finish();
+
             }
         });
+
+
+
         binding.txtRegLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
