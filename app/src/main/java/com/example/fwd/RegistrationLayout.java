@@ -42,7 +42,7 @@ public class RegistrationLayout extends AppCompatActivity {
     }
 
     private void reload() {
-        Toast.makeText(RegistrationLayout.this, "This email is already registered", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -112,6 +112,7 @@ public class RegistrationLayout extends AppCompatActivity {
             public void onClick(View view) {
                 Intent login = new Intent(RegistrationLayout.this,LoginActivity.class);
                 startActivity(login);
+                finish();
             }
         });
     }

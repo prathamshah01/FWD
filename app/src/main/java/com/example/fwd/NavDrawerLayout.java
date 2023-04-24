@@ -15,7 +15,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -77,7 +79,15 @@ public class NavDrawerLayout extends AppCompatActivity {
 
                 }
                 else if (id == R.id.navLogout){
-                    Toast.makeText(NavDrawerLayout.this, "Baki che...", Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences myPrefs = getSharedPreferences("MY",
+                            MODE_PRIVATE);
+                    SharedPreferences.Editor editor = myPrefs.edit();
+                    editor.clear();
+                    editor.commit();
+                    Intent intent = new Intent(NavDrawerLayout.this,Home.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
 
                 }
 
@@ -86,7 +96,6 @@ public class NavDrawerLayout extends AppCompatActivity {
                 return true;
             }
         });
-
 
     }
 
