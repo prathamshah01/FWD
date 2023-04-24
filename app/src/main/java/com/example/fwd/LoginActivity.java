@@ -54,7 +54,8 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
+                                    // If Sign in success, User will be navigated to home screen
+                                    Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
                                     Intent homeScreen = new Intent(LoginActivity.this,NavDrawerLayout.class);
                                     startActivity(homeScreen);
                                 } else {
