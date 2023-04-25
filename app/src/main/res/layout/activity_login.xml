@@ -39,7 +39,7 @@
             </androidx.cardview.widget.CardView>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilEmail"
+                android:id="@+id/txtForgotEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -70,11 +70,13 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="30dp"
-                app:passwordToggleEnabled="true"
+                app:endIconDrawable="@drawable/custom_password_eye"
 
+                app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tilEmail"
+                app:layout_constraintTop_toBottomOf="@+id/txtForgotEmail"
+                app:passwordToggleEnabled="true"
                 app:startIconDrawable="@drawable/baseline_lock_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -91,19 +93,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="161dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="162dp"
                 android:text="Login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtLoginPass" />
+                app:layout_constraintTop_toBottomOf="@+id/txtForgotPass" />
 
             <TextView
                 android:id="@+id/txtRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="106dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="107dp"
                 android:layout_marginBottom="30dp"
                 android:gravity="center_horizontal"
@@ -113,6 +115,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnLogin"
                 app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/txtForgotPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="149dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="150dp"
+                android:text="Forgot password?"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtLoginPass" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

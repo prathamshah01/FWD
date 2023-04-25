@@ -46,24 +46,42 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 email= binding.edEmail.getText().toString().trim();
                 password = binding.edPassword.getText().toString().trim();
 
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // If Sign in success, User will be navigated to home screen
-                                    Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
-                                    Intent homeScreen = new Intent(LoginActivity.this,NavDrawerLayout.class);
-                                    startActivity(homeScreen);
-                                    finish();
-                                } else {
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                if (email.equals("")){
+                    binding.edEmail.setError("Enter Name");
+                }
+                else if (password.equals("")){
+                    binding.edPassword.setError("Enter Password");
+                }
+                else {
+
+                    mAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // If Sign in success, User will be navigated to home screen
+                                        Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
+                                        Intent homeScreen = new Intent(LoginActivity.this,NavDrawerLayout.class);
+                                        startActivity(homeScreen);
+                                        finish();
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
+            }
+        });
+
+        binding.txtForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,ForgotPassword.class);
+                startActivity(intent);
             }
         });
 
