@@ -43,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edVolunteerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Volunteer's Name" />
@@ -62,6 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtVolunteerName">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edVolunteerPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone Number"

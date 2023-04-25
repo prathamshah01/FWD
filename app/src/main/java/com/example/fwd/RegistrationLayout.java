@@ -69,7 +69,7 @@ public class RegistrationLayout extends AppCompatActivity {
                     if (Name.equals("")) {
                         binding.edName.setError("Enter Name");
                     } else if (Phonenumber.equals("")) {
-                        binding.edPhone.setError("Enter Phonenumber");
+                        binding.edPhone.setError("Enter Phone Number");
                     } else if (email.equals("")) {
                         binding.edEmail.setError("Enter Email");
                     } else if (password.equals("")) {

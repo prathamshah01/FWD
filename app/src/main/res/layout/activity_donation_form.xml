@@ -81,6 +81,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edDonorName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Donor's Name" />
@@ -100,6 +101,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtVolunteerName">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edDonorPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Phone Number"
@@ -161,6 +163,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/rlFoodInfo">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edFoodType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Food type" />
@@ -180,6 +183,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtFoodType">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edFoodCount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Will Include"
@@ -201,6 +205,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtFoodType">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edExpire"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Will Expire in?"
@@ -225,7 +230,7 @@
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="Pickup Time"
+                    android:text="Available Time"
                     android:textColor="#0C0C0C" />
 
                 <View
@@ -248,7 +253,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
 
-                android:id="@+id/textInputLayout2"
+                android:id="@+id/txtAvailableFrom"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -256,11 +261,12 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="25dp"
                 app:endIconMode="clear_text"
-                app:layout_constraintEnd_toStartOf="@+id/textInputLayout3"
+                app:layout_constraintEnd_toStartOf="@+id/txtAvailableTo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edAvailableFrom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="From"
@@ -270,7 +276,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
 
-                android:id="@+id/textInputLayout3"
+                android:id="@+id/txtAvailableTo"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -279,10 +285,11 @@
                 android:layout_marginEnd="20dp"
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textInputLayout2"
+                app:layout_constraintStart_toEndOf="@+id/txtAvailableFrom"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edAvailableTo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="To"
@@ -302,7 +309,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+                app:layout_constraintTop_toBottomOf="@+id/txtAvailableFrom" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
