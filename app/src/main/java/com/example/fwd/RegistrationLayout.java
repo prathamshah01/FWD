@@ -19,6 +19,8 @@ import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,10 +28,14 @@ import java.util.TimerTask;
 
 public class RegistrationLayout extends AppCompatActivity {
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference regData = database.getReference("Registration");
+
     private ActivityRegistrationLayoutBinding binding;
-    private String Name,Number,Email,Password,ConfirmPass;
     private FirebaseAuth mAuth;
     String  email,password;
+
+
 
     @Override
     public void onStart() {
@@ -61,22 +67,22 @@ public class RegistrationLayout extends AppCompatActivity {
                 email = binding.edEmail.getText().toString().trim();
                 password =binding.edPassword.getText().toString().trim();
 
-                String Name = binding.edName.getText().toString();
-                String Phonenumber = binding.edPhone.getText().toString();
-                String Cpassword = binding.edConfirmPassword.getText().toString();
+                String name = binding.edName.getText().toString();
+                String phoneNumber = binding.edPhone.getText().toString();
+                String cPassword = binding.edConfirmPassword.getText().toString();
 
                     //specific colum validation
-                    if (Name.equals("")) {
+                    if (name.equals("")) {
                         binding.edName.setError("Enter Name");
-                    } else if (Phonenumber.equals("")) {
+                    } else if (phoneNumber.equals("")) {
                         binding.edPhone.setError("Enter Phone Number");
                     } else if (email.equals("")) {
                         binding.edEmail.setError("Enter Email");
                     } else if (password.equals("")) {
                         binding.edPassword.setError("Enter Password");
-                    } else if (Cpassword.equals("")) {
+                    } else if (cPassword.equals("")) {
                         binding.edConfirmPassword.setError("Enter Repassword");
-                    }else if(!password.equals(Cpassword)){
+                    }else if(!password.equals(cPassword)){
                         Toast.makeText(RegistrationLayout.this, "Both password are not same ", Toast.LENGTH_SHORT).show();
                     }
                     // validation completed
@@ -103,6 +109,11 @@ public class RegistrationLayout extends AppCompatActivity {
                                                                 mAuth.getCurrentUser().reload();
                                                                 if(mAuth.getCurrentUser().isEmailVerified()){
                                                                     timer.cancel();
+
+                                                                    String key = regData.push().getKey();
+                                                                    Registration registration = new Registration(name,phoneNumber,email,password,cPassword);
+                                                                    regData.child(key).setValue(registration);
+
                                                                     Intent homeScreen = new Intent(RegistrationLayout.this,NavDrawerLayout.class);
                                                                     startActivity(homeScreen);
                                                                     finish();
@@ -127,6 +138,7 @@ public class RegistrationLayout extends AppCompatActivity {
                                         }
                                     }
                                 });
+
                     }
             }
         });

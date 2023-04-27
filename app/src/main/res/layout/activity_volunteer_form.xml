@@ -70,17 +70,45 @@
             android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtVolunteerAddress"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVolunteerPhone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edVolunteerAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:autofillHints=""
+            android:gravity="start|top"
+            android:hint="Address"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:minLines="6"
+            android:scrollbars="vertical"
+            android:singleLine="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/btnVolunteerSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
-        android:layout_marginTop="86dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="159dp"
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtVolunteerPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/txtVolunteerAddress" />
 
 
     <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->

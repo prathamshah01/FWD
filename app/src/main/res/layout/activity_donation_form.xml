@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -95,17 +96,20 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
+                app:counterMaxLength="10"
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtVolunteerName">
+                app:layout_constraintTop_toBottomOf="@+id/txtVolunteerName"
+                app:prefixText="+91 ">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edDonorPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Phone Number"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -176,8 +180,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
+                android:layout_marginEnd="40dp"
                 app:endIconMode="clear_text"
+                app:helperText="Number of peoples"
+                app:helperTextTextColor="#2DAD7E"
                 app:layout_constraintEnd_toStartOf="@+id/txtExpire"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtFoodType">
@@ -196,20 +202,23 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 app:endIconMode="clear_text"
+                app:helperText="Enter Hours"
+                app:helperTextTextColor="#2DAD7E"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/txtFoodCount"
-                app:layout_constraintTop_toBottomOf="@+id/txtFoodType">
+                app:layout_constraintTop_toBottomOf="@+id/txtFoodType"
+                app:placeholderText="E.g. : 6">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edExpire"
+                    android:id="@+id/edExpiry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Will Expire in?"
-                    android:inputType="numberDecimal" />
+                    android:inputType="number|text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout
@@ -259,8 +268,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
+                android:layout_marginEnd="40dp"
                 app:endIconMode="clear_text"
+                app:helperText="Date &amp; TIme"
+                app:helperTextTextColor="#2DAD7E"
                 app:layout_constraintEnd_toStartOf="@+id/txtAvailableTo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
@@ -269,8 +280,11 @@
                     android:id="@+id/edAvailableFrom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="From"
-                    android:inputType="numberDecimal" />
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="From" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -280,10 +294,12 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 app:endIconMode="clear_text"
+                app:helperText="Date &amp; TIme"
+                app:helperTextTextColor="#2DAD7E"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/txtAvailableFrom"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
@@ -293,23 +309,91 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="To"
-                    android:inputType="numberDecimal" />
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtAvailableFrom">
+
+                <TextView
+                    android:id="@+id/tvAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Pickup Address"
+                    android:textColor="#0C0C0C" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toLeftOf="@id/tvAdd"
+                    android:background="#050505" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_toRightOf="@id/tvAdd"
+                    android:background="#050505" />
+
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtAddress"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                app:endIconMode="clear_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:autofillHints=""
+                    android:gravity="start|top"
+                    android:hint="Address"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:minLines="6"
+                    android:scrollbars="vertical"
+                    android:singleLine="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <Button
                 android:id="@+id/btnDonationSubmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="158dp"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="159dp"
                 android:layout_marginBottom="30dp"
                 android:text="Submit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtAvailableFrom" />
+                app:layout_constraintTop_toBottomOf="@+id/txtAddress" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
