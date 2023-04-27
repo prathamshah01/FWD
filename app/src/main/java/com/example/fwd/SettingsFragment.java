@@ -8,31 +8,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fwd.databinding.FragmentHomeBinding;
-
-import java.util.zip.Inflater;
+import com.example.fwd.databinding.FragmentSettingsBinding;
 
 
-public class HistoryFragment extends Fragment {
+public class SettingsFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
-    public HistoryFragment() {
-        // Required empty public constructor
-    }
+    private FragmentSettingsBinding binding;
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        binding = FragmentHomeBinding.inflate(inflater,container,false);
+        binding = FragmentSettingsBinding.inflate(inflater,container,false);
         return binding.getRoot();
-
     }
 }

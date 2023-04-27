@@ -17,11 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.example.fwd.databinding.ActivityNavDrawerLayoutBinding;
 import com.google.android.material.navigation.NavigationView;
 
 public class NavDrawerLayout extends AppCompatActivity {
@@ -54,18 +51,20 @@ public class NavDrawerLayout extends AppCompatActivity {
 
                 int id = item.getItemId();
                 if (id == R.id.navHome){
+
                     loadFragment(new HomeFragment());
 
-
                 } else if (id == R.id.navHistory) {
+
                     loadFragment(new HistoryFragment());
 
-
                 } else if (id == R.id.navFeedback) {
-                    loadFragment(new FeedbackFragment());
+
+//                    loadFragment(new FeedbackFragment());
+
+
 
                 } else if (id == R.id.navRecommend) {
-//                    loadFragment(new ShareFragment());
 
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
@@ -73,9 +72,9 @@ public class NavDrawerLayout extends AppCompatActivity {
                     sendIntent.setType("text/plain");
                     startActivity(sendIntent);
 
-
                 } else if (id == R.id.navSettings) {
-                    Toast.makeText(NavDrawerLayout.this, "Baki che...", Toast.LENGTH_SHORT).show();
+
+                    loadFragment(new SettingsFragment());
 
                 }
                 else if (id == R.id.navLogout){

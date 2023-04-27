@@ -4,12 +4,11 @@ public class Registration {
 
     private String key,Name,Pone,Email,Password,ConfirmPassword;
 
-    public Registration(String name, String pone, String email, String password, String confirmPassword) {
+    public Registration(String name, String pone, String email) {
+
         Name = name;
         Pone = pone;
         Email = email;
-        Password = password;
-        ConfirmPassword = confirmPassword;
     }
 
     public String getKey() {
@@ -44,21 +43,6 @@ public class Registration {
         Email = email;
     }
 
-    public String getPassword() {
-        return Password;
-    }
-
-    public void setPassword(String password) {
-        Password = password;
-    }
-
-    public String getConfirmPassword() {
-        return ConfirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        ConfirmPassword = confirmPassword;
-    }
 
     @Override
     public String toString() {
@@ -67,8 +51,6 @@ public class Registration {
                 ", Name='" + Name + '\'' +
                 ", Pone='" + Pone + '\'' +
                 ", Email='" + Email + '\'' +
-                ", Password='" + Password + '\'' +
-                ", ConfirmPassword='" + ConfirmPassword + '\'' +
                 '}';
     }
 }

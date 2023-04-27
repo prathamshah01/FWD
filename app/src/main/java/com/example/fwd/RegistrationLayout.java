@@ -111,7 +111,7 @@ public class RegistrationLayout extends AppCompatActivity {
                                                                     timer.cancel();
 
                                                                     String key = regData.push().getKey();
-                                                                    Registration registration = new Registration(name,phoneNumber,email,password,cPassword);
+                                                                    Registration registration = new Registration(name,phoneNumber,email);
                                                                     regData.child(key).setValue(registration);
 
                                                                     Intent homeScreen = new Intent(RegistrationLayout.this,NavDrawerLayout.class);
@@ -138,7 +138,6 @@ public class RegistrationLayout extends AppCompatActivity {
                                         }
                                     }
                                 });
-
                     }
             }
         });

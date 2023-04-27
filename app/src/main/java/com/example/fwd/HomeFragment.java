@@ -49,6 +49,21 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        binding.crdViewRequests.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Requests = new Intent(getContext(),ViewRequests.class);
+                startActivity(Requests);
+            }
+        }));
+
+        binding.crdGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Gallery = new Intent(getContext(),Community.class);
+                startActivity(Gallery);
+            }
+        });
 
     }
 }

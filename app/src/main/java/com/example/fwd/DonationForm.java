@@ -162,6 +162,7 @@ public class DonationForm extends AppCompatActivity {
                     Intent intent = new Intent(DonationForm.this,ViewRequests.class);
                     startActivity(intent);
                     Toast.makeText(DonationForm.this, "Request stored successfully....", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
         });
