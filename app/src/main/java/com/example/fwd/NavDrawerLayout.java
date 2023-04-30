@@ -1,5 +1,6 @@
 package com.example.fwd;
 
+import static com.example.fwd.R.id.navHistory;
 import static com.example.fwd.R.id.navHome;
 
 import androidx.annotation.NonNull;
@@ -17,14 +18,19 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+
 public class NavDrawerLayout extends AppCompatActivity {
+
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    boolean doubleBackToExitPressedOnce;
 
 
     @Override
@@ -45,6 +51,7 @@ public class NavDrawerLayout extends AppCompatActivity {
 
         loadFragment(new HomeFragment());
 
+//        NAVIGATION DRAWER AND EXCHANGING FRAGMENTS
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -56,13 +63,11 @@ public class NavDrawerLayout extends AppCompatActivity {
 
                 } else if (id == R.id.navHistory) {
 
-                    loadFragment(new HistoryFragment());
+                    loadFragment( new HistoryFragment());
 
                 } else if (id == R.id.navFeedback) {
 
-//                    loadFragment(new FeedbackFragment());
-
-
+                    loadFragment(new FeedbackFragment());
 
                 } else if (id == R.id.navRecommend) {
 
@@ -76,8 +81,7 @@ public class NavDrawerLayout extends AppCompatActivity {
 
                     loadFragment(new SettingsFragment());
 
-                }
-                else if (id == R.id.navLogout){
+                } else if (id == R.id.navLogout){
 
                     SharedPreferences myPrefs = getSharedPreferences("MY",
                             MODE_PRIVATE);
@@ -91,30 +95,49 @@ public class NavDrawerLayout extends AppCompatActivity {
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
-
                 return true;
+
             }
         });
-
     }
 
+//    HANDELING BACKPRESS
     @Override
     public void onBackPressed() {
 
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
                 drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        }
+        else {
+                if (doubleBackToExitPressedOnce) {
+                    super.onBackPressed();
+                    return;
+                }
+
+                this.doubleBackToExitPressedOnce = true;
+                Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
+
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        doubleBackToExitPressedOnce = false;
+                    }
+                }, 2000);
+            }
+
         }
 
-    }
 
-
+//    REPLACE FRAGMENT METHOD
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
-        ft.add(R.id.container,fragment);
+        ft.replace(R.id.container,fragment);
         ft.commit();
     }
+
+
+
 }

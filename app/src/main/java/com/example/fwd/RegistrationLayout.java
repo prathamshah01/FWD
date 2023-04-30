@@ -21,9 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.core.utilities.Validation;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Pattern;
 
 
 public class RegistrationLayout extends AppCompatActivity {
@@ -35,7 +37,10 @@ public class RegistrationLayout extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String  email,password;
 
-
+//    public boolean isValidMobile(String phone) {
+//        int number;
+//        number = return android.util.Patterns.PHONE.matcher(phone).matches();
+//    }
 
     @Override
     public void onStart() {
@@ -67,7 +72,7 @@ public class RegistrationLayout extends AppCompatActivity {
                 email = binding.edEmail.getText().toString().trim();
                 password =binding.edPassword.getText().toString().trim();
 
-                String name = binding.edName.getText().toString();
+                String name = binding.edName.getText().toString().trim();
                 String phoneNumber = binding.edPhone.getText().toString();
                 String cPassword = binding.edConfirmPassword.getText().toString();
 
@@ -79,12 +84,18 @@ public class RegistrationLayout extends AppCompatActivity {
                     } else if (email.equals("")) {
                         binding.edEmail.setError("Enter Email");
                     } else if (password.equals("")) {
-                        binding.edPassword.setError("Enter Password");
+                        binding.edPassword.setError("Enter Valid Password");
                     } else if (cPassword.equals("")) {
                         binding.edConfirmPassword.setError("Enter Repassword");
                     }else if(!password.equals(cPassword)){
                         Toast.makeText(RegistrationLayout.this, "Both password are not same ", Toast.LENGTH_SHORT).show();
                     }
+                    else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                        Toast.makeText(RegistrationLayout.this, "Enter a valid email", Toast.LENGTH_SHORT).show();
+                    } else if (phoneNumber.length()<10){
+                        Toast.makeText(RegistrationLayout.this, "Enter valid phone number", Toast.LENGTH_SHORT).show();
+                    }
+
                     // validation completed
 
                     else {
@@ -133,7 +144,7 @@ public class RegistrationLayout extends AppCompatActivity {
                                         } else {
                                             // If sign in fails, a message will be displayed to the user.
                                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                            Toast.makeText(RegistrationLayout.this, "Email already exists",
+                                            Toast.makeText(RegistrationLayout.this, "Invalid Email",
                                                     Toast.LENGTH_SHORT).show();
                                         }
                                     }

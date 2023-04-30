@@ -48,7 +48,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="Donor's Info"
-                    android:textColor="#0C0C0C" />
+                    android:textColor="@color/teal_green" />
 
                 <View
                     android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
                     android:layout_toLeftOf="@id/DonorsInfo"
-                    android:background="#000000" />
+                    android:background="@color/teal_green" />
 
                 <View
                     android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="16dp"
                     android:layout_toRightOf="@id/DonorsInfo"
-                    android:background="#050505" />
+                    android:background="@color/teal_green" />
 
             </RelativeLayout>
 
@@ -77,6 +77,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 app:endIconMode="clear_text"
+                app:placeholderText="Name Surname"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
@@ -132,7 +133,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="Food Information"
-                    android:textColor="#0C0C0C" />
+                    android:textColor="@color/teal_green" />
 
                 <View
                     android:layout_width="match_parent"
@@ -140,7 +141,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
                     android:layout_toLeftOf="@id/txtFoodInfo"
-                    android:background="#050505" />
+                    android:background="@color/teal_green" />
 
                 <View
                     android:layout_width="match_parent"
@@ -148,7 +149,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="16dp"
                     android:layout_toRightOf="@id/txtFoodInfo"
-                    android:background="#050505" />
+                    android:background="@color/teal_green" />
 
             </RelativeLayout>
 
@@ -161,6 +162,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 app:endIconMode="clear_text"
+                app:placeholderText="E.g.: Dal-Chawal, Roti-Sabzi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +172,7 @@
                     android:id="@+id/edFoodType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Food type" />
+                    android:hint="WhatFood is?" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -184,6 +186,7 @@
                 app:endIconMode="clear_text"
                 app:helperText="Number of peoples"
                 app:helperTextTextColor="#2DAD7E"
+                app:placeholderText="E.g.: 15"
                 app:layout_constraintEnd_toStartOf="@+id/txtExpire"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtFoodType">
@@ -240,7 +243,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="Available Time"
-                    android:textColor="#0C0C0C" />
+                    android:textColor="@color/teal_green" />
 
                 <View
                     android:layout_width="match_parent"
@@ -248,7 +251,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
                     android:layout_toLeftOf="@id/tvText"
-                    android:background="#050505" />
+                    android:background="@color/teal_green" />
 
                 <View
                     android:layout_width="match_parent"
@@ -256,7 +259,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="16dp"
                     android:layout_toRightOf="@id/tvText"
-                    android:background="#050505" />
+                    android:background="@color/teal_green" />
 
             </RelativeLayout>
 
@@ -335,7 +338,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="Pickup Address"
-                    android:textColor="#0C0C0C" />
+                    android:textColor="@color/teal_green" />
 
                 <View
                     android:layout_width="match_parent"
@@ -343,7 +346,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
                     android:layout_toLeftOf="@id/tvAdd"
-                    android:background="#050505" />
+                    android:background="@color/teal_green" />
 
                 <View
                     android:layout_width="match_parent"
@@ -351,7 +354,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="16dp"
                     android:layout_toRightOf="@id/tvAdd"
-                    android:background="#050505" />
+                    android:background="@color/teal_green" />
 
             </RelativeLayout>
 
@@ -364,6 +367,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 app:endIconMode="clear_text"
+                app:placeholderText="Format :- Building number, street name, landmark, city, state, ZIP code."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">

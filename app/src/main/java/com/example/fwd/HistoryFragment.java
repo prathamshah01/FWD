@@ -8,14 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fwd.databinding.FragmentHomeBinding;
-
-import java.util.zip.Inflater;
+import com.example.fwd.databinding.FragmentHistoryBinding;
 
 
 public class HistoryFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentHistoryBinding binding;
+
+
     public HistoryFragment() {
         // Required empty public constructor
     }
@@ -31,7 +31,7 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FragmentHomeBinding.inflate(inflater,container,false);
+        binding = FragmentHistoryBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }

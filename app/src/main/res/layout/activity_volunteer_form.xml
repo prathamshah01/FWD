@@ -40,6 +40,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         app:endIconMode="clear_text"
+        app:placeholderText="Name Surname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
@@ -60,6 +61,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         app:endIconMode="clear_text"
+        app:counterMaxLength="10"
+        app:prefixText="+91 "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVolunteerName">
@@ -69,7 +72,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone Number"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:maxLength="10"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -81,6 +85,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         app:endIconMode="clear_text"
+        app:placeholderText="Format :- Building number, street name, landmark, city, state, ZIP code."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVolunteerPhone">
@@ -100,19 +105,45 @@
             android:singleLine="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtPickupTime"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                app:endIconMode="clear_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtVolunteerAddress"
+                app:placeholderText="Enter approx. Pickup TIme">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPickupTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Pickup Time"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
             <Button
                 android:id="@+id/btnVolunteerSubmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="158dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="159dp"
                 android:layout_marginBottom="30dp"
                 android:text="Submit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtVolunteerAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/txtPickupTime" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.fwd.databinding.ActivityDonationFormBinding;
-import com.example.fwd.databinding.ActivityVolunteerFormBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -62,9 +61,8 @@ public class DonationForm extends AppCompatActivity {
                                     @Override
                                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minuteOfDay) {
                                         binding.edAvailableFrom.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year + "/" + hourOfDay + ":" + minuteOfDay);
-
                                     }
-                                },hour,minute,false);
+                                },hour,minute,true);
                                 timePickerDialog.show();
                             }
                         },
@@ -101,7 +99,7 @@ public class DonationForm extends AppCompatActivity {
                                         // on below line we are setting date to our edit text.
                                         binding.edAvailableTo.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year + "/" + hourOfDay + ":" + minuteOfDay);
                                     }
-                                },hour,minute,false);
+                                },hour,minute,true);
                                 timePickerDialog.show();
                             }
                         },
@@ -151,6 +149,9 @@ public class DonationForm extends AppCompatActivity {
                 else if (address.equals("")) {
                     binding.edAddress.setError("Enter Address");
                 }
+                else if (phoneNumber.length()<10){
+                    Toast.makeText(DonationForm.this, "Enter valid phone number", Toast.LENGTH_SHORT).show();
+                }
                 //validation completed
                 else{
 //                    STORING DATA IN DATABASE
@@ -161,7 +162,7 @@ public class DonationForm extends AppCompatActivity {
 //                    NAVIGATION TO VIEW REQUEST ACTIVITY
                     Intent intent = new Intent(DonationForm.this,ViewRequests.class);
                     startActivity(intent);
-                    Toast.makeText(DonationForm.this, "Request stored successfully....", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DonationForm.this, "Your Request is stored successfully....", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
