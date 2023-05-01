@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,6 +19,8 @@ import com.example.fwd.databinding.ActivityCommunityBinding;
 import com.example.fwd.databinding.ActivityImageUploadBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -27,6 +31,9 @@ import java.util.Locale;
 
 public class ImageUpload extends AppCompatActivity {
 
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("Image");
     private ActivityImageUploadBinding binding;
     StorageReference storageReference;
     Uri imageUri;
@@ -52,11 +59,32 @@ public class ImageUpload extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String description = binding.edDescription.getText().toString().trim();
+
+                //validation start
+                if (description.equals("")){
+                    binding.edDescription.setError("Please enter your experience");
+
+                }
+                else if (imageUri == null){
+                    Toast.makeText(ImageUpload.this, "Please upload Image", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+                    uploadImage();
 
 
-                uploadImage();
+
+
+                }
+
             }
         });
+
+    }
+
+    private void uploadData() {
+
 
     }
 
@@ -104,7 +132,6 @@ public class ImageUpload extends AppCompatActivity {
 
                     }
                 });
-
     }
 
     @Override
