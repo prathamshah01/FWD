@@ -1,5 +1,7 @@
 package com.example.fwd;
 
+import android.net.Uri;
+
 public class ImageUploadModel {
     String image,description;
 
@@ -24,7 +26,7 @@ public class ImageUploadModel {
         this.description = description;
     }
 
-    public ImageUploadModel() {
+    public ImageUploadModel(String description, Uri imageUri) {
 
     }
 

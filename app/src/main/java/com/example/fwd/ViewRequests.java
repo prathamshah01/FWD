@@ -18,16 +18,16 @@ public class ViewRequests extends AppCompatActivity {
 //    TextView detailsText;
 //    LinearLayout layout;
 //
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        binding = ActivityViewRequestsBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityViewRequestsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 //        getActionBar();
 //
 //        layout = binding.layout;
 //        layout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
-//    }
+    }
 //
 //    public void expand(View view) {
 //
