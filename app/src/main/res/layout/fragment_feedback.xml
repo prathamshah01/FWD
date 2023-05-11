@@ -52,7 +52,7 @@
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="Users's Info"
+                    android:text="User's Info"
                     android:textColor="@color/teal_green" />
 
                 <View
@@ -135,7 +135,7 @@
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="UserExperience"
+                    android:text="User Experience"
                     android:textColor="@color/teal_green" />
 
                 <View
@@ -499,6 +499,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
                 app:endIconMode="clear_text"
+                app:placeholderText="Please tell us your suggestions or feedback, that would help us improve"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rgFuture">
@@ -509,7 +510,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:gravity="start|top"
-                    android:hint="Please tell us your suggestions that would help us improve"
+                    android:hint="Your Feedback"
                     android:inputType="textMultiLine"
                     android:lines="8"
                     android:minLines="6"
