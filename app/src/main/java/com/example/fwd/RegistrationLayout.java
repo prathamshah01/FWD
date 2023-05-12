@@ -5,7 +5,9 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -104,6 +106,14 @@ public class RegistrationLayout extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
+
+                                            SharedPreferences sharedPreferences = getSharedPreferences("Leftovers", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                            editor.putBoolean("isLogin", true);
+                                            editor.putString("email", email);
+                                            editor.apply();
+
                                             Toast.makeText(RegistrationLayout.this,"Click the link sent to your email for registration",Toast.LENGTH_LONG).show();
 
                                             // If Registration success, The user will be redirected to home screen and data will be stored in Firebase
@@ -125,7 +135,7 @@ public class RegistrationLayout extends AppCompatActivity {
                                                                     Registration registration = new Registration(name,phoneNumber,email);
                                                                     regData.child(key).setValue(registration);
 
-                                                                    Intent homeScreen = new Intent(RegistrationLayout.this,NavDrawerLayout.class);
+                                                                    Intent homeScreen = new Intent(RegistrationLayout.this,LoginActivity.class);
                                                                     startActivity(homeScreen);
                                                                     finish();
                                                                 }else{

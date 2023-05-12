@@ -83,13 +83,13 @@ public class NavDrawerLayout extends AppCompatActivity {
 
                 } else if (id == R.id.navLogout){
 
-                    SharedPreferences myPrefs = getSharedPreferences("MY",
+                    SharedPreferences myPrefs = getSharedPreferences("Leftovers",
                             MODE_PRIVATE);
                     SharedPreferences.Editor editor = myPrefs.edit();
                     editor.clear();
                     editor.commit();
+                    Toast.makeText(NavDrawerLayout.this, "You are loged out", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(NavDrawerLayout.this,Home.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
 
                 }

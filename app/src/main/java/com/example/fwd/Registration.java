@@ -2,7 +2,7 @@ package com.example.fwd;
 
 public class Registration {
 
-    private String key,Name,Pone,Email,Password,ConfirmPassword;
+    private String key,Name,Pone,Email;
 
     public Registration(String name, String pone, String email) {
 

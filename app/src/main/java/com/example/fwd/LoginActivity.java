@@ -5,10 +5,13 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.fwd.databinding.ActivityLoginBinding;
@@ -24,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private String email,password;
     private FirebaseAuth mAuth;
+
+    CheckBox checkbox;
 
     @Override
     public void onStart() {
@@ -55,19 +60,38 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else if (password.equals("")){
                     binding.edPassword.setError("Enter Password");
-                }
-                else {
+                } else {
 
                     mAuth.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        // If Sign in success, User will be navigated to home screen
-                                        Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
-                                        Intent homeScreen = new Intent(LoginActivity.this,NavDrawerLayout.class);
-                                        startActivity(homeScreen);
-                                        finish();
+
+                                        if(binding.cbRemember.isChecked()){
+                                            SharedPreferences sharedPreferences = getSharedPreferences("Leftovers", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                            editor.putBoolean("isLogin", true);
+                                            editor.putString("email", email);
+                                            editor.apply();
+
+                                            // If Sign in success, User will be navigated to home screen
+                                            Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
+                                            Intent homeScreen = new Intent(LoginActivity.this,NavDrawerLayout.class);
+                                            startActivity(homeScreen);
+                                            finish();
+                                        }
+
+                                        else{
+                                            // If Sign in success, User will be navigated to home screen
+                                            Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
+                                            Intent homeScreen = new Intent(LoginActivity.this,NavDrawerLayout.class);
+                                            startActivity(homeScreen);
+                                            finish();
+                                        }
+
+
                                     } else {
                                         Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                                     }
@@ -76,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
 
         binding.txtForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
