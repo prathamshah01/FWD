@@ -12,6 +12,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
@@ -34,24 +35,27 @@ import java.util.Locale;
 
 public class ImageUpload extends AppCompatActivity {
 
-//  VARIABLES
+    //  VARIABLES
     StorageReference storageReference;
-    DatabaseReference databaseReference;
     private ActivityImageUploadBinding binding;
     Uri imageUri;
     ProgressDialog progressDialog;
     private final int Gallery_Req_Code = 1000;
-
+    private DatabaseReference imagedb = FirebaseDatabase.getInstance().getReference("Community");
     String description;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityImageUploadBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        storageReference = FirebaseStorage.getInstance().getReference("Image");
-        databaseReference = FirebaseDatabase.getInstance().getReference("Image");
-        description  = binding.edDescription.getText().toString().trim();
+
+//        SETTING IMAGE NAME
+        storageReference = FirebaseStorage.getInstance().getReference();
+//        IMAGE NAME FINISHED
+
 
 
         binding.imgUpload.setOnClickListener(new View.OnClickListener() {
@@ -61,100 +65,28 @@ public class ImageUpload extends AppCompatActivity {
             }
         });
 
+
         binding.btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
                 //validation start
-
-
-                if (imageUri == null){
+                if (imageUri == null) {
                     Toast.makeText(ImageUpload.this, "Please upload Image", Toast.LENGTH_SHORT).show();
-                }else if (description.equals("")) {
-                    binding.edDescription.setError("Please enter your experience");
+                } else {
+                    uploadImage(imageUri);
                 }
-                else {
-                    uploadImage();
-
-
-
-
-                }
-
             }
         });
-
-    }
-
-    private void uploadData() {
-
-
     }
 
     //  SELECT IMAGE METHOD
     private void selectImage() {
 
-        Intent iGalery = new Intent(Intent.ACTION_PICK);
-        iGalery.setData((MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
-        startActivityForResult(iGalery, Gallery_Req_Code);
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setData((MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
+        startActivityForResult(galleryIntent, Gallery_Req_Code);
     }
-
-
-
-
-    public String GetFileExtension(Uri uri) {
-
-        ContentResolver contentResolver = getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri)) ;
-
-    }
-
-//    UPLODING IMAGE
-    public void uploadImage() {
-
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Your image is being Uploaded...");
-        progressDialog.show();
-
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy-hh:mm", Locale.CANADA);
-        Date now = new Date();
-        String filename = formatter.format(now);
-
-        StorageReference storageReference2 = storageReference.child(System.currentTimeMillis() + "." + GetFileExtension(imageUri));
-
-        storageReference.putFile(imageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        binding.imgUpload.setImageURI(null);
-                        Toast.makeText(ImageUpload.this, "Successfully Uploaded", Toast.LENGTH_SHORT).show();
-
-                        String key = databaseReference.push().getKey();
-                        ImageUploadModel imageUploadModel = new ImageUploadModel(description,imageUri);
-                        databaseReference.child(key).setValue(imageUploadModel);
-
-                        if (progressDialog.isShowing()){
-                            progressDialog.dismiss();
-                        }
-                        binding.imgUpload.setImageResource(R.mipmap.upload);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        if(progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }
-
-                        Toast.makeText(ImageUpload.this, "Failed to Upload", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-    }
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -169,6 +101,108 @@ public class ImageUpload extends AppCompatActivity {
             }
         }
     }
+    //  SELECT IMAGE METHOD COMPLETE
+
+
+    //    UPLOADING IMAGE
+    public void uploadImage(Uri uri) {
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Your image is being Uploaded...");
+        progressDialog.show();
+
+        description = binding.edDescription.getText().toString().trim();
+        StorageReference reference = storageReference.child(System.currentTimeMillis() + ":" + getFileExtension(uri));
+        reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+
+                        ImageUploadModel imageUploadModel = new ImageUploadModel(uri.toString(),description);
+                        String modelId = imagedb.push().getKey();
+                        imagedb.child(modelId).setValue(imageUploadModel,description);
+                        Toast.makeText(ImageUpload.this, "Image Uploaded successfully...", Toast.LENGTH_SHORT).show();
+                        if (progressDialog.isShowing()){
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+
+                if (!progressDialog.isShowing()){
+                    progressDialog.isShowing();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                if (progressDialog.isShowing()){
+                    progressDialog.dismiss();
+                }
+                binding.imgUpload.setImageResource(R.mipmap.upload);
+                Toast.makeText(ImageUpload.this, "Image upload failed !!! ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+//    WILL RETURN THE SELECTED IMAGE EXTENSION
+    public String getFileExtension(Uri muri) {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(muri));
+    }
+    //    UPLOADING IMAGE FINISHED
 
 
 }
+
+
+
+
+
+// progressDialog = new ProgressDialog(this);
+//        progressDialog.setTitle("Your image is being Uploaded...");
+//        progressDialog.show();
+//         String description= binding.edDescription.getText().toString().trim();
+//
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy-hh:mm", Locale.CANADA);
+//        Date now = new Date();
+//        String filename = formatter.format(now);
+//
+//
+//        storageReference.putFile(imageUri)
+//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        binding.imgUpload.setImageURI(null);
+//                        Toast.makeText(ImageUpload.this, "Successfully Uploaded", Toast.LENGTH_SHORT).show();
+//
+//                        ImageUploadModel imageUploadModel = new ImageUploadModel(imageUri.toString(),description);
+//                        String modelId = imagedb.push().getKey();
+//                        imagedb.child(modelId).setValue(imageUploadModel);
+//                        Log.i("AAASSS",""+modelId+" "+imageUploadModel);
+//
+//                        if (progressDialog.isShowing()){
+//                            progressDialog.dismiss();
+//                        }
+//                        binding.imgUpload.setImageResource(R.mipmap.upload);
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        if(progressDialog.isShowing()) {
+//                            progressDialog.dismiss();
+//                        }
+//
+//                        Toast.makeText(ImageUpload.this, "Failed to Upload", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                });

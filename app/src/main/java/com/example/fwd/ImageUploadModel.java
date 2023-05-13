@@ -1,21 +1,19 @@
 package com.example.fwd;
 
-import android.net.Uri;
-
 public class ImageUploadModel {
-    String image,description;
+    String imager, description;
 
-    public ImageUploadModel(String image, String description) {
-        this.image = image;
+    public ImageUploadModel(String imager, String description) {
+        this.imager = imager;
         this.description = description;
     }
 
-    public String getImage() {
-        return image;
+    public String getImager() {
+        return imager;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImager(String imager) {
+        this.imager = imager;
     }
 
     public String getDescription() {
@@ -26,8 +24,11 @@ public class ImageUploadModel {
         this.description = description;
     }
 
-    public ImageUploadModel(String description, Uri imageUri) {
-
+    @Override
+    public String toString() {
+        return "ImageUploadModel{" +
+                "imager='" + imager + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
-
 }
