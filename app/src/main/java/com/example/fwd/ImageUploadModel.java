@@ -1,13 +1,27 @@
 package com.example.fwd;
 
 public class ImageUploadModel {
-    String imager, description;
+    private String imager;
+    private String description;
 
     public ImageUploadModel(String imager, String description) {
         this.imager = imager;
         this.description = description;
     }
 
+    // Default constructor (no-argument constructor)
+    public ImageUploadModel() {
+        // Initialize default values or perform necessary setup
+    }
+
+//    public ImageUploadModel(String imager, String description) {
+//
+//
+//    }
+
+    // Other constructors and methods
+
+    // Getter and setter methods for the instance variables
     public String getImager() {
         return imager;
     }
@@ -23,6 +37,8 @@ public class ImageUploadModel {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 
     @Override
     public String toString() {

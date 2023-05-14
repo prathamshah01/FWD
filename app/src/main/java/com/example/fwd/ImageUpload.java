@@ -112,7 +112,7 @@ public class ImageUpload extends AppCompatActivity {
         progressDialog.show();
 
         description = binding.edDescription.getText().toString().trim();
-        StorageReference reference = storageReference.child(System.currentTimeMillis() + ":" + getFileExtension(uri));
+        StorageReference reference = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(uri));
         reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -124,8 +124,13 @@ public class ImageUpload extends AppCompatActivity {
                         String modelId = imagedb.push().getKey();
                         imagedb.child(modelId).setValue(imageUploadModel,description);
                         Toast.makeText(ImageUpload.this, "Image Uploaded successfully...", Toast.LENGTH_SHORT).show();
+
                         if (progressDialog.isShowing()){
                             progressDialog.dismiss();
+
+                            Intent intent = new Intent(ImageUpload.this, Community.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }
                 });
@@ -150,7 +155,6 @@ public class ImageUpload extends AppCompatActivity {
             }
         });
 
-
     }
 
 //    WILL RETURN THE SELECTED IMAGE EXTENSION
@@ -161,48 +165,4 @@ public class ImageUpload extends AppCompatActivity {
     }
     //    UPLOADING IMAGE FINISHED
 
-
 }
-
-
-
-
-
-// progressDialog = new ProgressDialog(this);
-//        progressDialog.setTitle("Your image is being Uploaded...");
-//        progressDialog.show();
-//         String description= binding.edDescription.getText().toString().trim();
-//
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy-hh:mm", Locale.CANADA);
-//        Date now = new Date();
-//        String filename = formatter.format(now);
-//
-//
-//        storageReference.putFile(imageUri)
-//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                        binding.imgUpload.setImageURI(null);
-//                        Toast.makeText(ImageUpload.this, "Successfully Uploaded", Toast.LENGTH_SHORT).show();
-//
-//                        ImageUploadModel imageUploadModel = new ImageUploadModel(imageUri.toString(),description);
-//                        String modelId = imagedb.push().getKey();
-//                        imagedb.child(modelId).setValue(imageUploadModel);
-//                        Log.i("AAASSS",""+modelId+" "+imageUploadModel);
-//
-//                        if (progressDialog.isShowing()){
-//                            progressDialog.dismiss();
-//                        }
-//                        binding.imgUpload.setImageResource(R.mipmap.upload);
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        if(progressDialog.isShowing()) {
-//                            progressDialog.dismiss();
-//                        }
-//
-//                        Toast.makeText(ImageUpload.this, "Failed to Upload", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                });

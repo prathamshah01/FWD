@@ -31,15 +31,12 @@ public class SplashActivity extends AppCompatActivity {
 
                 if(isLogin){
                     intent=new Intent(SplashActivity.this,NavDrawerLayout.class);
-                    startActivity(intent);
-                    finish();
                 }
                 else{
                     intent=new Intent(SplashActivity.this,Home.class);
-                    startActivity(intent);
-                    finish();
                 }
-
+                startActivity(intent);
+                finish();
 
             }
         },1000);
