@@ -23,18 +23,13 @@ public class ViewRequests extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityViewRequestsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//        getActionBar();
-//
-//        layout = binding.layout;
-//        layout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+        getSupportActionBar();
+
     }
-//
-//    public void expand(View view) {
-//
-//        int v = (detailsText.getVisibility() == View.GONE)? View.VISIBLE: View.GONE;
-//
-//        TransitionManager.beginDelayedTransition(layout, new AutoTransition());
-//        detailsText.setVisibility(v);
-//
-//    }
+
+    public void expand(View view) {
+
+
+
+    }
 }

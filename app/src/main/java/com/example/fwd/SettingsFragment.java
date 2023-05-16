@@ -25,7 +25,6 @@ public class SettingsFragment extends Fragment {
         binding = FragmentSettingsBinding.inflate(getLayoutInflater());
         return binding.getRoot();
 
-
     }
 
     @Override

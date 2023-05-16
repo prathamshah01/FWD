@@ -52,8 +52,8 @@ public class Community extends AppCompatActivity {
                     ImageUploadModel imageUploadModel = new ImageUploadModel (imageUrl,descriptionUrl);
                     list.add(imageUploadModel);
                 }
-//                adapter.notifyDataSetChanged();
-                Log.i ("name",""+list);
+                adapter.notifyDataSetChanged();
+//                Log.i ("name",""+list);
             }
 
             @Override
@@ -68,6 +68,7 @@ public class Community extends AppCompatActivity {
             public void onClick(View v) {
                 Intent imgUpload = new Intent(Community.this,ImageUpload.class);
                 startActivity(imgUpload);
+                finish();
             }
         });
 
