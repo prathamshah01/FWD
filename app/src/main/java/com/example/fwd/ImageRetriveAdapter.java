@@ -40,7 +40,7 @@ public class ImageRetriveAdapter extends RecyclerView.Adapter<ImageRetriveAdapte
 
         Glide.with (context).load(mList.get(position).getImager()).into(holder.imageView);
 
-        TextView textView = holder.textView; // Assuming you have a TextView in your ViewHolder
+        TextView textView = holder.textView;
         String text = mList.get(position).getDescription();
 
         textView.setText(text);

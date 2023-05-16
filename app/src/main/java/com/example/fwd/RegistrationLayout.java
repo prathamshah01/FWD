@@ -5,6 +5,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,7 +38,11 @@ public class RegistrationLayout extends AppCompatActivity {
 
     private ActivityRegistrationLayoutBinding binding;
     private FirebaseAuth mAuth;
+    ProgressDialog progressDialog;
+
     String  email,password;
+
+
 
 //    public boolean isValidMobile(String phone) {
 //        int number;
@@ -88,9 +93,9 @@ public class RegistrationLayout extends AppCompatActivity {
                     } else if (password.equals("")) {
                         binding.edPassword.setError("Enter Valid Password");
                     } else if (cPassword.equals("")) {
-                        binding.edConfirmPassword.setError("Enter Repassword");
+                        binding.edConfirmPassword.setError("Reenter password is empty");
                     }else if(!password.equals(cPassword)){
-                        Toast.makeText(RegistrationLayout.this, "Both password are not same ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrationLayout.this, "Both passwords are not same ", Toast.LENGTH_SHORT).show();
                     }
                     else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                         Toast.makeText(RegistrationLayout.this, "Enter a valid email", Toast.LENGTH_SHORT).show();
@@ -101,6 +106,12 @@ public class RegistrationLayout extends AppCompatActivity {
                     // validation completed
 
                     else {
+
+//                  CREATING PROGRESSBAR
+                        progressDialog = new ProgressDialog(RegistrationLayout.this);
+                        progressDialog.setTitle("You are being registered ...");
+                        progressDialog.show();
+
                         mAuth.createUserWithEmailAndPassword(email, password)
                                 .addOnCompleteListener(RegistrationLayout.this, new OnCompleteListener<AuthResult>() {
                                     @Override
@@ -135,9 +146,14 @@ public class RegistrationLayout extends AppCompatActivity {
                                                                     Registration registration = new Registration(name,phoneNumber,email);
                                                                     regData.child(key).setValue(registration);
 
-                                                                    Intent homeScreen = new Intent(RegistrationLayout.this,LoginActivity.class);
-                                                                    startActivity(homeScreen);
-                                                                    finish();
+                                                                    if (progressDialog.isShowing()){
+                                                                        progressDialog.dismiss();
+
+                                                                        Intent homeScreen = new Intent(RegistrationLayout.this,LoginActivity.class);
+                                                                        startActivity(homeScreen);
+                                                                        finish();
+                                                                    }
+
                                                                 }else{
                                                                     Log.i("Email Verify","False");
                                                                 }
@@ -145,7 +161,10 @@ public class RegistrationLayout extends AppCompatActivity {
                                                         },0,800);
 
                                                     }else{
-                                                        Toast.makeText(RegistrationLayout.this,"Email is Not verified",Toast.LENGTH_LONG).show();
+                                                        if (progressDialog.isShowing()){
+                                                            progressDialog.dismiss();
+                                                            Toast.makeText(RegistrationLayout.this,"Email verification failed",Toast.LENGTH_LONG).show();
+                                                        }
                                                     }
                                                 }
                                             });
@@ -154,8 +173,11 @@ public class RegistrationLayout extends AppCompatActivity {
                                         } else {
                                             // If sign in fails, a message will be displayed to the user.
                                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                            Toast.makeText(RegistrationLayout.this, "Invalid Email",
-                                                    Toast.LENGTH_SHORT).show();
+
+                                            if (progressDialog.isShowing()){
+                                                progressDialog.dismiss();
+                                                Toast.makeText(RegistrationLayout.this, "Email verification timing exceeded", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
                                     }
                                 });

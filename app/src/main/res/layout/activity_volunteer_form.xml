@@ -72,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone Number"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:maxLength="10"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +85,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         app:endIconMode="clear_text"
-        app:placeholderText="Format :- Building number, street name, landmark, city, state, ZIP code."
+        app:placeholderText="Format :- Building number, society name, street name, landmark, city, state, ZIP code."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVolunteerPhone">

@@ -15,9 +15,7 @@ import com.example.fwd.databinding.ActivityViewRequestsBinding;
 public class ViewRequests extends AppCompatActivity {
 
     private ActivityViewRequestsBinding binding;
-//    TextView detailsText;
-//    LinearLayout layout;
-//
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

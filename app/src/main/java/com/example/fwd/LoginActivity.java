@@ -5,6 +5,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,6 +30,11 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     CheckBox checkbox;
+    ProgressDialog progressDialog;
+
+
+//    boolean isClickable = true;
+
 
     @Override
     public void onStart() {
@@ -62,6 +68,16 @@ public class LoginActivity extends AppCompatActivity {
                     binding.edPassword.setError("Enter Password");
                 } else {
 
+//                    DISABLING CLICK
+//                    binding.edEmail.setEnabled(!isClickable);
+//                    binding.edPassword.setEnabled(!isClickable);
+
+//                    CREATING PROCESS DIALOG
+                    progressDialog = new ProgressDialog(LoginActivity.this);
+                    progressDialog.setTitle("Checking your credentials...");
+                    progressDialog.show();
+
+
                     mAuth.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -69,6 +85,9 @@ public class LoginActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
 
                                         if(binding.cbRemember.isChecked()){
+
+//                                      STORING DATA IN SHARDED PREF.
+
                                             SharedPreferences sharedPreferences = getSharedPreferences("Leftovers", Context.MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -76,24 +95,39 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("email", email);
                                             editor.apply();
 
-                                            // If Sign in success, User will be navigated to home screen
-                                            Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
-                                            Intent homeScreen = new Intent(LoginActivity.this,NavDrawerLayout.class);
-                                            startActivity(homeScreen);
-                                            finish();
+                                            if (progressDialog.isShowing()) {
+                                                progressDialog.dismiss();
+
+                                                // If Sign in success, User will be navigated to home screen
+                                                Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
+                                                Intent homeScreen = new Intent(LoginActivity.this, NavDrawerLayout.class);
+                                                startActivity(homeScreen);
+                                                finish();
+                                            }
+
+
                                         }
 
                                         else{
-                                            // If Sign in success, User will be navigated to home screen
-                                            Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
-                                            Intent homeScreen = new Intent(LoginActivity.this,NavDrawerLayout.class);
-                                            startActivity(homeScreen);
-                                            finish();
+                                            if (progressDialog.isShowing()) {
+                                                progressDialog.dismiss();
+
+                                                // If Sign in success, User will be navigated to home screen
+                                                Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
+                                                Intent homeScreen = new Intent(LoginActivity.this, NavDrawerLayout.class);
+                                                startActivity(homeScreen);
+                                                finish();
+                                            }
                                         }
 
 
                                     } else {
-                                        Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                                        if (progressDialog.isShowing()) {
+                                            progressDialog.dismiss();
+
+                                            Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                                        }
+
                                     }
                                 }
                             });

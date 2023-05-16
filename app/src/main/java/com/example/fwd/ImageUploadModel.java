@@ -14,11 +14,6 @@ public class ImageUploadModel {
         // Initialize default values or perform necessary setup
     }
 
-//    public ImageUploadModel(String imager, String description) {
-//
-//
-//    }
-
     // Other constructors and methods
 
     // Getter and setter methods for the instance variables

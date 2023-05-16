@@ -107,6 +107,7 @@ public class ImageUpload extends AppCompatActivity {
     //    UPLOADING IMAGE
     public void uploadImage(Uri uri) {
 
+//        CREATING PROGRESSBAR
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Your image is being Uploaded...");
         progressDialog.show();

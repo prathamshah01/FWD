@@ -3,6 +3,7 @@ package com.example.fwd;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,6 +33,8 @@ public class DonationForm extends AppCompatActivity {
     int day = c.get(Calendar.DAY_OF_MONTH);
     int hour = c.get(Calendar.HOUR_OF_DAY);
     int minute = c.get(Calendar.MINUTE);
+    ProgressDialog progressDialog;
+
 
 
     @Override
@@ -154,16 +157,26 @@ public class DonationForm extends AppCompatActivity {
                 }
                 //validation completed
                 else{
+
+                    progressDialog = new ProgressDialog(DonationForm.this);
+                    progressDialog.setTitle("Storing and displaying your Donation Request ...");
+                    progressDialog.show();
+
 //                    STORING DATA IN DATABASE
                     String key = myRef.push().getKey();
                     Donator donator = new Donator(name,phoneNumber,foodType,foodExpriy,foodCount,availableFrom,availableTo,address);
                     myRef.child(key).setValue(donator);
 
+                    if (progressDialog.isShowing()){
+                        progressDialog.dismiss();
+
 //                    NAVIGATION TO VIEW REQUEST ACTIVITY
-                    Intent intent = new Intent(DonationForm.this,ViewRequests.class);
-                    startActivity(intent);
-                    Toast.makeText(DonationForm.this, "Your Request is stored successfully....", Toast.LENGTH_SHORT).show();
-                    finish();
+                        Intent intent = new Intent(DonationForm.this,ViewRequests.class);
+                        startActivity(intent);
+                        Toast.makeText(DonationForm.this, "Your Request is stored successfully....", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+
                 }
             }
         });

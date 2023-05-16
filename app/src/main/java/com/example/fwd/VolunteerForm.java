@@ -2,6 +2,7 @@ package com.example.fwd;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class VolunteerForm extends AppCompatActivity {
     DatabaseReference myRef = database.getReference("Volunteer");
 
     private ActivityVolunteerFormBinding binding;
+    ProgressDialog progressDialog;
 
     //  TO GET CURRENT DATE AND TIME
     final Calendar c = Calendar.getInstance();
@@ -76,17 +78,28 @@ public class VolunteerForm extends AppCompatActivity {
                 }
 
                 else{
+
+                    progressDialog = new ProgressDialog(VolunteerForm.this);
+                    progressDialog.setTitle("Volunteer is being registered and navigated to donation Request ...");
+                    progressDialog.show();
+
 //                  STORING DATA IN DATABASE
 
                     String key = myRef.push().getKey();
                     Volunteer volunteer = new Volunteer(vName, vPhone, vAddress, vPickupTime);
                     myRef.child(key).setValue(volunteer);
 
-                    Toast.makeText(VolunteerForm.this, "Your request is stored successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(VolunteerForm.this,ViewRequests.class);
-                    startActivity(intent);
-                    finish();
-                }
+                    if (progressDialog.isShowing()){
+                        progressDialog.dismiss();
+
+                        Toast.makeText(VolunteerForm.this, "Volunteer is registered", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(VolunteerForm.this,ViewRequests.class);
+                        startActivity(intent);
+                        finish();
+
+                    }
+
+                    }
 
             }
         });

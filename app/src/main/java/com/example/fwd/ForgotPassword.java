@@ -25,6 +25,7 @@ public class ForgotPassword extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         mAuth = FirebaseAuth.getInstance();
+        boolean isClickable = true;
 
         binding.btnForgot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +45,8 @@ public class ForgotPassword extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
                                 Toast.makeText(ForgotPassword.this, "Password reset link is sent to your mail", Toast.LENGTH_SHORT).show();
+                                binding.edForgotEmail.setEnabled(!isClickable);
+
 
                                 Intent intent = new Intent(ForgotPassword.this, LoginActivity.class);
                                 startActivity(intent);

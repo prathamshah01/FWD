@@ -37,7 +37,7 @@
             android:id="@+id/edDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Your Experience here"
+            android:hint="Share Your Experience here"
             android:inputType="textMultiLine"
             android:lines="10"
             android:minLines="1"

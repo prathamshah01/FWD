@@ -41,12 +41,12 @@ public class Community extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
+
         imagedb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                    ImageUploadModel model = dataSnapshot.getValue(ImageUploadModel.class);
-//                    list.add(model);
+
                     String imageUrl = dataSnapshot.child("imager").getValue().toString();
                     String descriptionUrl = dataSnapshot.child("description").getValue().toString();
                     ImageUploadModel imageUploadModel = new ImageUploadModel (imageUrl,descriptionUrl);
@@ -61,6 +61,7 @@ public class Community extends AppCompatActivity {
 
             }
         });
+        
 
 
         binding.btnAdd.setOnClickListener(new View.OnClickListener() {

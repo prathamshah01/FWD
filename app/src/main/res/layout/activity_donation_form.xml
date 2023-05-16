@@ -109,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Phone Number"
-                    android:inputType="numberDecimal"
+                    android:inputType="number"
                     android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -172,7 +172,7 @@
                     android:id="@+id/edFoodType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="WhatFood is?" />
+                    android:hint="What Food is?" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -195,8 +195,8 @@
                     android:id="@+id/edFoodCount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Will Include"
-                    android:inputType="numberDecimal" />
+                    android:hint="Sufficient for"
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -220,8 +220,8 @@
                     android:id="@+id/edExpiry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Will Expire in?"
-                    android:inputType="number|text" />
+                    android:hint="Shelf Life"
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout
@@ -242,7 +242,7 @@
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:text="Available Time"
+                    android:text="Availablity"
                     android:textColor="@color/teal_green" />
 
                 <View
@@ -367,7 +367,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 app:endIconMode="clear_text"
-                app:placeholderText="Format :- Building number, street name, landmark, city, state, ZIP code."
+                app:placeholderText="Format :- House number, society name, street name, landmark, city, state, ZIP code."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
