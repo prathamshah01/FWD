@@ -41,6 +41,8 @@ import java.util.Locale;
 
 public class ImageUpload extends AppCompatActivity {
 
+    CheckInternet internet = new CheckInternet();
+
     //  VARIABLES
     private ActivityImageUploadBinding binding;
 
@@ -59,6 +61,9 @@ public class ImageUpload extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityImageUploadBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        internet.InternetConnectivityChecker(this);
+        internet.start();
 
 
 //        SETTING IMAGE NAME

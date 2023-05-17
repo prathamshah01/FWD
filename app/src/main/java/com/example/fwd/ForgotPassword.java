@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ForgotPassword extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    CheckInternet internet = new CheckInternet();
+
 
     private ActivityForgotPasswordBinding binding;
     @Override
@@ -23,6 +25,9 @@ public class ForgotPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityForgotPasswordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        internet.InternetConnectivityChecker(this);
+        internet.start();
 
         mAuth = FirebaseAuth.getInstance();
         boolean isClickable = true;

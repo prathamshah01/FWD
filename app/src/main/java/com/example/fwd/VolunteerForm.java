@@ -31,12 +31,18 @@ public class VolunteerForm extends AppCompatActivity {
     int hour = c.get(Calendar.HOUR_OF_DAY);
     int minute = c.get(Calendar.MINUTE);
 
+    CheckInternet internet = new CheckInternet();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding =   ActivityVolunteerFormBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        internet.InternetConnectivityChecker(this);
+        internet.start();
 
         binding.edPickupTime.setOnClickListener(new View.OnClickListener() {
             @Override

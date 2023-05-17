@@ -39,12 +39,17 @@ public class NavDrawerLayout extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     boolean doubleBackToExitPressedOnce;
+    CheckInternet internet = new CheckInternet();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_drawer_layout);
+
+        internet.InternetConnectivityChecker(this);
+        internet.start();
+
 
 //        ID
         drawerLayout = findViewById(R.id.drawerLayout);

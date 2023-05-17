@@ -32,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox checkbox;
     ProgressDialog progressDialog;
 
+    CheckInternet internet = new CheckInternet();
+
 
 //    boolean isClickable = true;
 
@@ -53,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        internet.InternetConnectivityChecker(this);
+        internet.start();
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

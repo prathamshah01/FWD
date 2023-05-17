@@ -39,8 +39,9 @@ public class RegistrationLayout extends AppCompatActivity {
     private ActivityRegistrationLayoutBinding binding;
     private FirebaseAuth mAuth;
     ProgressDialog progressDialog;
-
     String  email,password;
+    CheckInternet internet = new CheckInternet();
+
 
 
 
@@ -70,6 +71,9 @@ public class RegistrationLayout extends AppCompatActivity {
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
 
+        internet.InternetConnectivityChecker(this);
+        internet.start();
+
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
 
 
@@ -98,9 +102,9 @@ public class RegistrationLayout extends AppCompatActivity {
                         Toast.makeText(RegistrationLayout.this, "Both passwords are not same ", Toast.LENGTH_SHORT).show();
                     }
                     else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                        Toast.makeText(RegistrationLayout.this, "Enter a valid email", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrationLayout.this, "Please Enter a valid email", Toast.LENGTH_SHORT).show();
                     } else if (phoneNumber.length()<10){
-                        Toast.makeText(RegistrationLayout.this, "Enter valid phone number", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrationLayout.this, "Please Enter a valid phone number", Toast.LENGTH_SHORT).show();
                     }
                     else if (!binding.cbTerms.isChecked()){
                         Toast.makeText(RegistrationLayout.this, "Please agree our terms to continue", Toast.LENGTH_SHORT).show();

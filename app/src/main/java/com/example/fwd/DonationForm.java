@@ -33,6 +33,10 @@ public class DonationForm extends AppCompatActivity {
     int hour = c.get(Calendar.HOUR_OF_DAY);
     int minute = c.get(Calendar.MINUTE);
     ProgressDialog progressDialog;
+    CheckInternet internet = new CheckInternet();
+
+
+
 
 
 
@@ -41,6 +45,9 @@ public class DonationForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDonationFormBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        internet.InternetConnectivityChecker(this);
+        internet.start();
 
 //        DATE AND TIME PICKER IN FOOD AVAILABLE FROM
         binding.edAvailableFrom.setOnClickListener(new View.OnClickListener() {

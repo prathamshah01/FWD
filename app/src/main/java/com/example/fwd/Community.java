@@ -27,11 +27,17 @@ public class Community extends AppCompatActivity {
     private ImageRetriveAdapter adapter;
     private DatabaseReference imagedb = FirebaseDatabase.getInstance().getReference("Community");
 
+    CheckInternet internet = new CheckInternet();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCommunityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        internet.InternetConnectivityChecker(this);
+        internet.start();
 
         recyclerView = binding.recyclerview;
         recyclerView.setHasFixedSize(true);

@@ -32,12 +32,18 @@ public class viewRequests extends AppCompatActivity {
     DonationDataAdapter MyAdapter;
     ArrayList<Donator> list;
 
+    CheckInternet internet = new CheckInternet();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityViewRequestsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar();
+
+        internet.InternetConnectivityChecker(this);
+        internet.start();
 
         database = FirebaseDatabase.getInstance().getReference("Donator");
 

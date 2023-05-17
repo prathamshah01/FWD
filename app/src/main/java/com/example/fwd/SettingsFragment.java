@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.example.fwd.databinding.FragmentSettingsBinding;
 
 
-public class SettingsFragment extends Fragment {
+ public class SettingsFragment extends Fragment {
 
     private FragmentSettingsBinding binding;
 

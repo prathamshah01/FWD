@@ -10,6 +10,8 @@ import com.example.fwd.databinding.ActivityHomeBinding;
 
 public class Home extends AppCompatActivity {
     private ActivityHomeBinding binding;
+    CheckInternet internet = new CheckInternet();
+
 
 
     @Override
@@ -17,6 +19,9 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        internet.InternetConnectivityChecker(this);
+        internet.start();
 
        binding.BtnRegister.setOnClickListener(new View.OnClickListener() {
            @Override

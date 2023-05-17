@@ -36,8 +36,6 @@ public class FeedbackFragment extends Fragment {
     String futureValue = "";
 
 
-
-
     public FeedbackFragment() {
         // Required empty public constructor
     }
