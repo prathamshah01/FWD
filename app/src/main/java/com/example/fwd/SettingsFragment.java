@@ -1,5 +1,8 @@
 package com.example.fwd;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -36,6 +39,27 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(), "My account clicked", Toast.LENGTH_SHORT).show();
 
+            }
+        });
+
+        binding.cvTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Terms.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.cvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences myPrefs = getActivity().getSharedPreferences("Leftovers", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = myPrefs.edit();
+                editor.clear();
+                editor.commit();
+                Toast.makeText(getContext(), "You are loged out", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(),Home.class);
+                startActivity(intent);
             }
         });
 

@@ -102,6 +102,9 @@ public class RegistrationLayout extends AppCompatActivity {
                     } else if (phoneNumber.length()<10){
                         Toast.makeText(RegistrationLayout.this, "Enter valid phone number", Toast.LENGTH_SHORT).show();
                     }
+                    else if (!binding.cbTerms.isChecked()){
+                        Toast.makeText(RegistrationLayout.this, "Please agree our terms to continue", Toast.LENGTH_SHORT).show();
+                    }
 
                     // validation completed
 
@@ -191,6 +194,14 @@ public class RegistrationLayout extends AppCompatActivity {
                 Intent login = new Intent(RegistrationLayout.this,LoginActivity.class);
                 startActivity(login);
                 finish();
+            }
+        });
+
+        binding.txtTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegistrationLayout.this, Terms.class);
+                startActivity(intent);
             }
         });
     }
