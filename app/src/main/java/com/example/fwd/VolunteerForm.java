@@ -93,7 +93,7 @@ public class VolunteerForm extends AppCompatActivity {
                         progressDialog.dismiss();
 
                         Toast.makeText(VolunteerForm.this, "Volunteer is registered", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(VolunteerForm.this,ViewRequests.class);
+                        Intent intent = new Intent(VolunteerForm.this, viewRequests.class);
                         startActivity(intent);
                         finish();
 

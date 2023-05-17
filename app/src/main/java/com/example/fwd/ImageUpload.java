@@ -3,10 +3,16 @@ package com.example.fwd;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
@@ -36,8 +42,11 @@ import java.util.Locale;
 public class ImageUpload extends AppCompatActivity {
 
     //  VARIABLES
-    StorageReference storageReference;
     private ActivityImageUploadBinding binding;
+
+    StorageReference storageReference;
+    private final int STORAGE_PERMISSION_CODE = 1;
+
     Uri imageUri;
     ProgressDialog progressDialog;
     private final int Gallery_Req_Code = 1000;
@@ -61,7 +70,14 @@ public class ImageUpload extends AppCompatActivity {
         binding.imgUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectImage();
+
+                if (ContextCompat.checkSelfPermission(ImageUpload.this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                    selectImage();
+                }
+                else {
+                    requestStoragePermission();
+                }
             }
         });
 
@@ -79,6 +95,37 @@ public class ImageUpload extends AppCompatActivity {
             }
         });
     }
+
+//    REQUESTING STORAGE ACCESS PERMISSION
+    private void requestStoragePermission() {
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission Needed")
+                    .setMessage("Storage Permission needed to set image ")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(ImageUpload.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+                        }
+                    })
+                    .setNegativeButton("Deny", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create().show();
+
+        }
+        else{
+            ActivityCompat.requestPermissions(ImageUpload.this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},STORAGE_PERMISSION_CODE);
+        }
+
+    }
+//    REQUESTING STORAGE ACCESS PERMISSION FINISHED
+
 
     //  SELECT IMAGE METHOD
     private void selectImage() {

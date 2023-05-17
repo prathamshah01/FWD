@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
         binding.crdViewRequests.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Requests = new Intent(getContext(),ViewRequests.class);
+                Intent Requests = new Intent(getContext(), viewRequests.class);
                 startActivity(Requests);
             }
         }));

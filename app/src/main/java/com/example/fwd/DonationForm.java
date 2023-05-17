@@ -16,7 +16,6 @@ import com.example.fwd.databinding.ActivityDonationFormBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.sql.Time;
 import java.util.Calendar;
 
 public class DonationForm extends AppCompatActivity {
@@ -117,6 +116,7 @@ public class DonationForm extends AppCompatActivity {
         });
 
 
+
         binding.btnDonationSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -171,7 +171,7 @@ public class DonationForm extends AppCompatActivity {
                         progressDialog.dismiss();
 
 //                    NAVIGATION TO VIEW REQUEST ACTIVITY
-                        Intent intent = new Intent(DonationForm.this,ViewRequests.class);
+                        Intent intent = new Intent(DonationForm.this, viewRequests.class);
                         startActivity(intent);
                         Toast.makeText(DonationForm.this, "Your Request is stored successfully....", Toast.LENGTH_SHORT).show();
                         finish();

@@ -4,7 +4,7 @@ import android.location.Address;
 
 public class Donator {
 
-    private String key,Name,Phonenumber,Foodtype,Foodexpriy,Foodcount,Fromtime,Totime,Address;
+    private String Name,Phonenumber,Foodtype,Foodexpriy,Foodcount,Fromtime,Totime,Address;
 
     public Donator( String name, String phonenumber, String foodtype, String foodexpriy, String foodcount, String fromtime, String totime, String address) {
 
@@ -18,13 +18,6 @@ public class Donator {
         Address = address;
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 
     public String getName() {
         return Name;
@@ -93,7 +86,6 @@ public class Donator {
     @Override
     public String toString() {
         return "Donator{" +
-                "key='" + key + '\'' +
                 ", Name='" + Name + '\'' +
                 ", Phonenumber='" + Phonenumber + '\'' +
                 ", Foodtype='" + Foodtype + '\'' +
