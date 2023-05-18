@@ -4,9 +4,19 @@ import android.location.Address;
 
 public class Donator {
 
-    private String Name,Phonenumber,Foodtype,Foodexpriy,Foodcount,Fromtime,Totime,Address;
+    private String Name;
+    private String Phonenumber;
+    private String Foodtype;
+    private String Foodexpriy;
+    private String Foodcount;
+    private String Fromtime;
+    private String Totime;
+    private String Address;
+    private String Status;
+    private String Key;
 
-    public Donator( String name, String phonenumber, String foodtype, String foodexpriy, String foodcount, String fromtime, String totime, String address) {
+
+    public Donator( String name, String phonenumber, String foodtype, String foodexpriy, String foodcount, String fromtime, String totime, String address, String status, String key) {
 
         Name = name;
         Phonenumber = phonenumber;
@@ -16,8 +26,10 @@ public class Donator {
         Fromtime = fromtime;
         Totime = totime;
         Address = address;
-    }
+        Status = status;
+        Key = key;
 
+    }
 
     public String getName() {
         return Name;
@@ -83,6 +95,22 @@ public class Donator {
         Address = address;
     }
 
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        Key = key;
+    }
+
+
     @Override
     public String toString() {
         return "Donator{" +
@@ -94,6 +122,8 @@ public class Donator {
                 ", Fromtime='" + Fromtime + '\'' +
                 ", Totime='" + Totime + '\'' +
                 ", Address='" + Address + '\'' +
+                ", Status ='" + Status + '\'' +
+                ", Key ='" + Key + '\'' +
                 '}';
     }
 }

@@ -133,6 +133,7 @@ public class DonationForm extends AppCompatActivity {
                 String availableFrom =binding.edAvailableFrom.getText().toString();
                 String availableTo= binding.edAvailableTo.getText().toString();
                 String address = binding.edAddress.getText().toString().trim();
+                String status = binding.txtStatus.getText().toString();
 
 
                 if (name.equals("")) {
@@ -167,7 +168,7 @@ public class DonationForm extends AppCompatActivity {
 
 //                    STORING DATA IN DATABASE
                     String key = myRef.push().getKey();
-                    Donator donator = new Donator(name,phoneNumber,foodType,foodExpriy,foodCount,availableFrom,availableTo,address);
+                    Donator donator = new Donator(name,phoneNumber,foodType,foodExpriy,foodCount,availableFrom,availableTo,address,status,key);
                     myRef.child(key).setValue(donator);
 
                     if (progressDialog.isShowing()){

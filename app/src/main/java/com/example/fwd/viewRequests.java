@@ -26,12 +26,10 @@ import java.util.Collections;
 public class viewRequests extends AppCompatActivity {
 
     private ActivityViewRequestsBinding binding;
-
     RecyclerView recyclerView;
     DatabaseReference database;
     DonationDataAdapter MyAdapter;
     ArrayList<Donator> list= new ArrayList<>();;
-
     CheckInternet internet = new CheckInternet();
 
 
@@ -70,8 +68,10 @@ public class viewRequests extends AppCompatActivity {
                     String from = dataSnapshot.child("fromtime").getValue().toString();
                     String to = dataSnapshot.child("totime").getValue().toString();
                     String address = dataSnapshot.child("address").getValue().toString();
+                    String status = dataSnapshot.child("status").getValue().toString();
+                    String key = dataSnapshot.child("key").getValue().toString();
 
-                    Donator donator = new Donator(name,phone,foodType,expiry,count,from,to,address);
+                    Donator donator = new Donator(name,phone,foodType,expiry,count,from,to,address,status,key);
 
                     list.add(donator);
 
@@ -90,6 +90,8 @@ public class viewRequests extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }

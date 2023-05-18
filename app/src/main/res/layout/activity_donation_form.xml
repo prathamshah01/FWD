@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/txt"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DonationForm">
@@ -77,10 +78,10 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 app:endIconMode="clear_text"
-                app:placeholderText="Name Surname"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                app:placeholderText="Name Surname">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edDonorName"
@@ -162,11 +163,11 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 app:endIconMode="clear_text"
-                app:placeholderText="E.g.: Dal-Chawal, Roti-Sabzi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rlFoodInfo">
+                app:layout_constraintTop_toBottomOf="@+id/rlFoodInfo"
+                app:placeholderText="E.g.: Dal-Chawal, Roti-Sabzi">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edFoodType"
@@ -186,10 +187,10 @@
                 app:endIconMode="clear_text"
                 app:helperText="Number of peoples"
                 app:helperTextTextColor="#2DAD7E"
-                app:placeholderText="E.g.: 15"
                 app:layout_constraintEnd_toStartOf="@+id/txtExpire"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtFoodType">
+                app:layout_constraintTop_toBottomOf="@+id/txtFoodType"
+                app:placeholderText="E.g.: 15">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edFoodCount"
@@ -367,10 +368,10 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 app:endIconMode="clear_text"
-                app:placeholderText="Format :- House number, society name, street name, landmark, city, state, ZIP code."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout3"
+                app:placeholderText="Format :- House number, society name, street name, landmark, city, state, ZIP code.">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edAddress"
@@ -400,6 +401,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtAddress" />
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="130dp"
+                android:text="Active"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -25,6 +25,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,6 +36,9 @@ public class DonationDataAdapter extends RecyclerView.Adapter<DonationDataAdapte
 
     Context context;
     ArrayList<Donator> list;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseRef = database.getReference("Donator");
+
 
     public DonationDataAdapter(Context context, ArrayList<Donator> list) {
         this.context = context;
@@ -65,11 +71,16 @@ public class DonationDataAdapter extends RecyclerView.Adapter<DonationDataAdapte
         holder.Foodexpriy.setText(donator.getFoodexpriy());
         holder.Fromtime.setText(donator.getFromtime());
         holder.Totime.setText(donator.getTotime());
+        holder.Status.setText(donator.getStatus());
+        holder.myKey.setText(donator.getKey());
 
 
-        String address = donator.getAddress().toString();
+
+
+        String address = donator.getAddress();
    //     Toast.makeText(context, ""+address, Toast.LENGTH_SHORT).show();
 
+//        NAVIGATION TO MAP ON IMAGE BUTTON
         holder.ibMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,59 +90,93 @@ public class DonationDataAdapter extends RecyclerView.Adapter<DonationDataAdapte
                 context.startActivity(mapIntent);
             }
         });
+//        NAVIGATION TO MAP ON IMAGE BUTTON FINISH
 
 
+//        NAVIGATION TO CALL LOGS WITH PHONE NUMBER AND PERMISSION
         holder.Phonenumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 1;
 
-                if (ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CALL_PHONE},
-                            MY_PERMISSIONS_REQUEST_CALL_PHONE);
-//                    Toast.makeText(context, "You need to type the number manually because the permission was denied", Toast.LENGTH_SHORT).show();
+                if (ContextCompat.checkSelfPermission(context,
+                        Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
 
-                    new AlertDialog.Builder(context)
-                            .setTitle("Permission Needed")
-                            .setMessage("Calling permission needed")
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    ActivityCompat.requestPermissions((Activity) context, new String[] {Manifest.permission.CALL_PHONE},MY_PERMISSIONS_REQUEST_CALL_PHONE);
-                                    String phone = donator.getPhonenumber();
-                                    Uri phoneUri = Uri.parse("" +phone);
-                                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                                    intent.setData(Uri.parse("tel:" + phoneUri));
-                                    context.startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("Deny", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            })
-                            .create().show();
-
-                } else {
                     String phone = donator.getPhonenumber();
                     Uri phoneUri = Uri.parse("" +phone);
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse("tel:" + phoneUri));
                     context.startActivity(intent);
+
+                }else {
+
+                    if (ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CALL_PHONE},
+                                MY_PERMISSIONS_REQUEST_CALL_PHONE);
+//                    Toast.makeText(context, "You need to type the number manually because the permission was denied", Toast.LENGTH_SHORT).show();
+
+                        new AlertDialog.Builder(context)
+                                .setTitle("Permission Needed")
+                                .setMessage("Calling permission needed")
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        ActivityCompat.requestPermissions((Activity) context, new String[] {Manifest.permission.CALL_PHONE},MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                                        String phone = donator.getPhonenumber();
+                                        Uri phoneUri = Uri.parse("" +phone);
+                                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                                        intent.setData(Uri.parse("tel:" + phoneUri));
+                                        context.startActivity(intent);
+                                    }
+                                })
+                                .setNegativeButton("Deny", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .create().show();
+
+                    } else {
+                        ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE);
+
+//                        String phone = donator.getPhonenumber();
+//                        Uri phoneUri = Uri.parse("" +phone);
+//                        Intent intent = new Intent(Intent.ACTION_VIEW);
+//                        intent.setData(Uri.parse("tel:" + phoneUri));
+//                        context.startActivity(intent);
+                    }
+
                 }
 
             }
         });
+//        NAVIGATION TO CALL LOGS WITH PHONE NUMBER AND PERMISSION FINISH
+
 
 
         holder.btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.crdDonationDetails.setBackgroundResource(R.color.light_grey);
+
+                String myKey = donator.getKey();
+//                Log.i("key",""+thiskey);
+                DatabaseReference dataRef = databaseRef.child("/"+myKey+"/status");
+                dataRef.setValue("Assigned");
+
+
+
             }
         });
+
+
+        if (holder.Status.getText().equals("Assigned")){
+            holder.crdDonationDetails.setBackgroundResource(R.color.light_grey);
+        }
+        else{
+            holder.crdDonationDetails.setBackgroundResource(R.color.default_card);
+        }
 
     }
 
@@ -142,7 +187,7 @@ public class DonationDataAdapter extends RecyclerView.Adapter<DonationDataAdapte
     }
 
     public static class DonationViewHolder extends RecyclerView.ViewHolder{
-        TextView Name,Phonenumber,Foodtype,Foodexpriy,Foodcount,Fromtime,Totime,Address;
+        TextView Name,Phonenumber,Foodtype,Foodexpriy,Foodcount,Fromtime,Totime,Address,Status,myKey;
         ImageButton ibMap;
         Button btnConfirm;
         CardView crdDonationDetails;
@@ -160,6 +205,8 @@ public class DonationDataAdapter extends RecyclerView.Adapter<DonationDataAdapte
             ibMap = itemView.findViewById(R.id.ibMap);
             btnConfirm = itemView.findViewById(R.id.btnConfirm);
             crdDonationDetails = itemView.findViewById(R.id.crdDonationDetails);
+            Status = itemView.findViewById(R.id.txtDStatus);
+            myKey = itemView.findViewById(R.id.txtKey);
         }
     }
 

@@ -161,7 +161,7 @@ public class ImageUpload extends AppCompatActivity {
 
 //        CREATING PROGRESSBAR
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Your image is being Uploaded...");
+        progressDialog.setTitle("Your experience is being shared...");
         progressDialog.show();
 
         description = binding.edDescription.getText().toString().trim();

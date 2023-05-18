@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Community extends AppCompatActivity {
     private ActivityCommunityBinding binding;
@@ -58,6 +59,7 @@ public class Community extends AppCompatActivity {
                     ImageUploadModel imageUploadModel = new ImageUploadModel (imageUrl,descriptionUrl);
                     list.add(imageUploadModel);
                 }
+                Collections.reverse(list);
                 adapter.notifyDataSetChanged();
 //                Log.i ("name",""+list);
             }
