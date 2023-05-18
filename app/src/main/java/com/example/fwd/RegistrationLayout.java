@@ -189,6 +189,7 @@ public class RegistrationLayout extends AppCompatActivity {
                                     }
                                 });
                     }
+                    
             }
         });
 
@@ -198,6 +199,7 @@ public class RegistrationLayout extends AppCompatActivity {
                 Intent login = new Intent(RegistrationLayout.this,LoginActivity.class);
                 startActivity(login);
                 finish();
+                    
             }
         });
 
@@ -206,6 +208,7 @@ public class RegistrationLayout extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(RegistrationLayout.this, Terms.class);
                 startActivity(intent);
+                    
             }
         });
     }

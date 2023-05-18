@@ -83,6 +83,7 @@ public class ImageUpload extends AppCompatActivity {
                 else {
                     requestStoragePermission();
                 }
+                  
             }
         });
 
@@ -97,6 +98,7 @@ public class ImageUpload extends AppCompatActivity {
                 } else {
                     uploadImage(imageUri);
                 }
+                  
             }
         });
     }

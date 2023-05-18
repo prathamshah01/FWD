@@ -39,6 +39,7 @@ import com.example.fwd.databinding.FragmentSettingsBinding;
             public void onClick(View v) {
                 Toast.makeText(getContext(), "My account clicked", Toast.LENGTH_SHORT).show();
 
+                     
             }
         });
 
@@ -47,6 +48,7 @@ import com.example.fwd.databinding.FragmentSettingsBinding;
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Terms.class);
                 startActivity(intent);
+                     
             }
         });
 
@@ -60,6 +62,7 @@ import com.example.fwd.databinding.FragmentSettingsBinding;
                 Toast.makeText(getContext(), "You are loged out", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(),Home.class);
                 startActivity(intent);
+                     
             }
         });
 

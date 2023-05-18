@@ -38,6 +38,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent Donation = new Intent(getContext(),DonationForm.class);
                 startActivity(Donation);
+                 
             }
         });
 
@@ -46,6 +47,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent Volunteer = new Intent(getContext(),VolunteerForm.class);
                 startActivity(Volunteer);
+                 
             }
         });
 
@@ -54,6 +56,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent Requests = new Intent(getContext(), viewRequests.class);
                 startActivity(Requests);
+                 
             }
         }));
 
@@ -62,6 +65,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent Gallery = new Intent(getContext(),Community.class);
                 startActivity(Gallery);
+                 
             }
         });
 

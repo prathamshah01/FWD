@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -31,6 +32,10 @@ public class viewRequests extends AppCompatActivity {
     DonationDataAdapter MyAdapter;
     ArrayList<Donator> list= new ArrayList<>();;
     CheckInternet internet = new CheckInternet();
+    private Handler handler;
+    private Runnable runnable;
+    private static final int CHECK_INTERVAL = 3000; // 3 seconds
+
 
 
     @Override
@@ -79,19 +84,14 @@ public class viewRequests extends AppCompatActivity {
                 }
                 Collections.reverse(list);
                 MyAdapter.notifyDataSetChanged();
+
 //                Log.i("name",""+list);
-
-
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
-
 
 
     }

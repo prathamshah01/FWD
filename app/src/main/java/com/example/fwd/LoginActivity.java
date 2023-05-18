@@ -136,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
                 }
+                   
             }
         });
 
@@ -145,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this,ForgotPassword.class);
                 startActivity(intent);
+                   
             }
         });
 
@@ -154,6 +156,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), RegistrationLayout.class);
                 startActivity(intent);
                 finish();
+                   
             }
         });
 

@@ -1,11 +1,15 @@
 package com.example.fwd;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,6 +48,28 @@ public class ImageRetriveAdapter extends RecyclerView.Adapter<ImageRetriveAdapte
         String text = mList.get(position).getDescription();
 
         textView.setText(text);
+
+        holder.textView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.i("Text","Clicked");
+//                Toast.makeText(context, ""+text, Toast.LENGTH_SHORT).show();
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Image  Description").setMessage(""+text).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+
     }
 
     @Override
@@ -63,4 +89,5 @@ public class ImageRetriveAdapter extends RecyclerView.Adapter<ImageRetriveAdapte
 
         }
     }
+
 }

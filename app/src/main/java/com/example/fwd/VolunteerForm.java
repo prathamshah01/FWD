@@ -55,6 +55,7 @@ public class VolunteerForm extends AppCompatActivity {
                     }
                 },hour,minute,true);
                 timePickerDialog.show();
+                      
             }
         });
 
@@ -107,6 +108,7 @@ public class VolunteerForm extends AppCompatActivity {
 
                     }
 
+                      
             }
         });
 
