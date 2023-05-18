@@ -21,16 +21,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class viewRequests extends AppCompatActivity {
 
     private ActivityViewRequestsBinding binding;
 
-    private ImageButton imageButton;
     RecyclerView recyclerView;
     DatabaseReference database;
     DonationDataAdapter MyAdapter;
-    ArrayList<Donator> list;
+    ArrayList<Donator> list= new ArrayList<>();;
 
     CheckInternet internet = new CheckInternet();
 
@@ -45,14 +45,16 @@ public class viewRequests extends AppCompatActivity {
         internet.InternetConnectivityChecker(this);
         internet.start();
 
+
         database = FirebaseDatabase.getInstance().getReference("Donator");
 
         recyclerView = binding.recyclerView;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        list = new ArrayList<>();
+
         MyAdapter = new DonationDataAdapter(this,list);
         recyclerView.setAdapter(MyAdapter);
+
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
@@ -73,9 +75,13 @@ public class viewRequests extends AppCompatActivity {
 
                     list.add(donator);
 
+
                 }
+                Collections.reverse(list);
                 MyAdapter.notifyDataSetChanged();
 //                Log.i("name",""+list);
+
+
 
             }
 
@@ -89,17 +95,3 @@ public class viewRequests extends AppCompatActivity {
     }
 
 }
-
-//    LayoutInflater inflater = LayoutInflater.from(null);
-//    View view = inflater.inflate(R.layout.view_request_layout, null);
-//                    imageButton = findViewById(R.id.ibMap);
-//                            imageButton.setOnClickListener(new View.OnClickListener() {
-//@Override
-//public void onClick(View v) {
-//        Uri mapUri = Uri.parse("geo:0,0?q = " +Uri.encode(""+address));
-//        Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
-//        mapIntent.setPackage("com.google.android.apps.maps");
-//        startActivity(mapIntent);
-//        }
-//        });
-

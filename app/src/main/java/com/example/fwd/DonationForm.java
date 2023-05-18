@@ -36,10 +36,6 @@ public class DonationForm extends AppCompatActivity {
     CheckInternet internet = new CheckInternet();
 
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -35,6 +35,8 @@ public class FeedbackFragment extends Fragment {
     String usageValue = "";
     String futureValue = "";
 
+    CheckInternet internet = new CheckInternet();
+
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -59,7 +61,6 @@ public class FeedbackFragment extends Fragment {
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             validation();
             }
         });
@@ -136,11 +137,6 @@ public class FeedbackFragment extends Fragment {
 
             Toast.makeText(getContext(), "Thank you for taking the time to provide your feedback. ", Toast.LENGTH_SHORT).show();
 
-
-
-//            Fragment fragment = new HomeFragment();
-//            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-//            ft.replace(R.id.constraintMain, fragment).commit();
 
         }
     }
