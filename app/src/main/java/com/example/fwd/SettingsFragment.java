@@ -37,9 +37,10 @@ import com.example.fwd.databinding.FragmentSettingsBinding;
         binding.cvAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "My account clicked", Toast.LENGTH_SHORT).show();
 
-                     
+                Intent intent = new Intent(getContext(), MyAccount.class);
+                startActivity(intent);
+
             }
         });
 
@@ -55,7 +56,7 @@ import com.example.fwd.databinding.FragmentSettingsBinding;
         binding.cvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences myPrefs = getActivity().getSharedPreferences("Leftovers", Context.MODE_PRIVATE);
+                SharedPreferences myPrefs = getActivity().getSharedPreferences("splash", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = myPrefs.edit();
                 editor.clear();
                 editor.commit();

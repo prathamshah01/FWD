@@ -21,7 +21,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.Collections;
 import java.util.zip.Inflater;
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,7 +35,10 @@ public class LoginActivity extends AppCompatActivity {
     private String email,password;
     private FirebaseAuth mAuth;
 
+    DatabaseReference database;
+
     CheckBox checkbox;
+    private  int count=0;
     ProgressDialog progressDialog;
 
     CheckInternet internet = new CheckInternet();
@@ -57,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
         internet.InternetConnectivityChecker(this);
         internet.start();
+        database = FirebaseDatabase.getInstance().getReference("Donator");
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +102,13 @@ public class LoginActivity extends AppCompatActivity {
 
 //                                      STORING DATA IN SHARDED PREF.
 
+                                            SharedPreferences splash = getSharedPreferences("splash", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor splasheditor = splash.edit();
+
+                                            splasheditor.putBoolean("isLogin", true);
+                                            splasheditor.putString("email", email);
+                                            splasheditor.apply();
+
                                             SharedPreferences sharedPreferences = getSharedPreferences("Leftovers", Context.MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -101,6 +118,33 @@ public class LoginActivity extends AppCompatActivity {
 
                                             if (progressDialog.isShowing()) {
                                                 progressDialog.dismiss();
+                                                database.addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                                        String value = sharedPreferences.getString("phone", "phone");
+                                                        for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                                            String phone = dataSnapshot.child("phonenumber").getValue().toString();
+                                                            if(value.equals(phone)) {
+                                                              count++;
+                                                            }
+
+
+                                                        }
+                                                        if (count >=1) {
+                                                            editor.putInt("total", count);
+
+                                                            editor.apply();
+                                                        }
+
+
+//                Log.i("name",""+list);
+                                                    }
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                    }
+                                                });
 
                                                 // If Sign in success, User will be navigated to home screen
                                                 Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();

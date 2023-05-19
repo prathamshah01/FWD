@@ -3,6 +3,7 @@ package com.example.fwd;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,18 +42,35 @@ public class HistoryDataAdapter  extends RecyclerView.Adapter<HistoryDataAdapter
 
     @Override
     public void onBindViewHolder(@NonNull HistoryDataAdapter.HistoryViewHolder holder, int position) {
-
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.history_layout, null);
         Donator donator = list.get(position);
-        Log.i("A",""+donator);
 
-        holder.Name.setText(donator.getName());
-        holder.Foodtype.setText(donator.getFoodtype());
-        holder.Foodcount.setText(donator.getFoodcount());
-        holder.Status.setText(donator.getStatus());
-        holder.myKey.setText(donator.getKey());
 
+
+        String phone = donator.getPhonenumber();
+
+
+
+
+            LayoutInflater inflater = LayoutInflater.from(context);
+            View view = inflater.inflate(R.layout.history_layout, null);
+            Log.i("A",""+donator);
+
+            holder.Name.setText(donator.getName());
+            holder.Foodtype.setText(donator.getFoodtype());
+            holder.Foodcount.setText(donator.getFoodcount());
+            holder.Status.setText(donator.getStatus());
+            holder.myKey.setText(donator.getKey());
+
+
+  //      else {
+//            boolean isPhoneNumberValid = !value.equals(""+phone);
+//            View myView = holder.crdHistory;
+//            holder.crdHistory.setVisibility(myView.GONE);
+//
+//            CardView cardView = holder.crdHistory;
+//            cardView.setVisibility(cardView.GONE);
+
+      //  }
     }
 
     @Override

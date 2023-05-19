@@ -65,7 +65,7 @@ public class DonationForm extends AppCompatActivity {
                                 TimePickerDialog timePickerDialog = new TimePickerDialog(DonationForm.this, new TimePickerDialog.OnTimeSetListener() {
                                     @Override
                                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minuteOfDay) {
-                                        binding.edAvailableFrom.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year + "/" + hourOfDay + ":" + minuteOfDay);
+                                        binding.edAvailableFrom.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year + " " + hourOfDay + ":" + minuteOfDay);
                                     }
                                 },hour,minute,true);
                                 timePickerDialog.show();
@@ -102,7 +102,7 @@ public class DonationForm extends AppCompatActivity {
                                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minuteOfDay) {
 
                                         // on below line we are setting date to our edit text.
-                                        binding.edAvailableTo.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year + "/" + hourOfDay + ":" + minuteOfDay);
+                                        binding.edAvailableTo.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year + " " + hourOfDay + ":" + minuteOfDay);
                                     }
                                 },hour,minute,true);
                                 timePickerDialog.show();

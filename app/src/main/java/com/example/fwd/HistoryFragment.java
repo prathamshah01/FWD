@@ -1,5 +1,7 @@
 package com.example.fwd;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fwd.databinding.ActivityViewRequestsBinding;
@@ -55,11 +58,8 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         binding = FragmentHistoryBinding.inflate(inflater,container,false);
         return binding.getRoot();
-
-
     }
 
     @Override
@@ -78,11 +78,18 @@ public class HistoryFragment extends Fragment {
         recyclerView1.setAdapter(MyAdapter);
 
 
+
+
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 //                list.clear();
+
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences("Leftovers", Context.MODE_PRIVATE);
+
+                String value = sharedPreferences.getString("phone", "phone");
+
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
@@ -96,15 +103,24 @@ public class HistoryFragment extends Fragment {
                     String address = dataSnapshot.child("address").getValue().toString();
                     String status = dataSnapshot.child("status").getValue().toString();
                     String key = dataSnapshot.child("key").getValue().toString();
+                    if(value.equals(phone)) {
+                        Donator donator = new Donator(name, phone, foodType, expiry, count, from, to, address, status, key);
 
-                    Donator donator = new Donator(name,phone,foodType,expiry,count,from,to,address,status,key);
-
-                    list.add(donator);
+                        list.add(donator);
+                    }
 
 
                 }
-                Collections.reverse(list);
-                MyAdapter.notifyDataSetChanged();
+                if (list.size() > 0) {
+                    Collections.reverse(list);
+
+                    MyAdapter.notifyDataSetChanged();
+                }
+                else{
+                    binding.txtNoData.setVisibility(View.VISIBLE);
+                    binding.recyclerView1.setVisibility(View.GONE);
+                }
+
 
 //                Log.i("name",""+list);
             }
@@ -113,6 +129,10 @@ public class HistoryFragment extends Fragment {
 
             }
         });
+
+
+
+
 
 
     }

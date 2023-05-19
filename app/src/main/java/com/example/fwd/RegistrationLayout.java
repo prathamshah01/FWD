@@ -125,11 +125,21 @@ public class RegistrationLayout extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
 
+                                            SharedPreferences splash = getSharedPreferences("splash", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor splasheditor = splash.edit();
+
+                                            splasheditor.putBoolean("isLogin", true);
+                                            splasheditor.putString("email", email);
+                                            splasheditor.apply();
+
+
                                             SharedPreferences sharedPreferences = getSharedPreferences("Leftovers", Context.MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
                                             editor.putBoolean("isLogin", true);
                                             editor.putString("email", email);
+                                            editor.putString("name",name);
+                                            editor.putString("phone",phoneNumber);
                                             editor.apply();
 
                                             Toast.makeText(RegistrationLayout.this,"Click the link sent to your email for registration",Toast.LENGTH_LONG).show();

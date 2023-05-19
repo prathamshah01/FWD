@@ -122,7 +122,7 @@ public class NavDrawerLayout extends AppCompatActivity {
                     loadFragment(new SettingsFragment());
 
                 } else if (id == R.id.navLogout){
-                    SharedPreferences myPrefs = getSharedPreferences("Leftovers",
+                    SharedPreferences myPrefs = getSharedPreferences("splash",
                             MODE_PRIVATE);
                     SharedPreferences.Editor editor = myPrefs.edit();
                     editor.clear();

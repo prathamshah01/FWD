@@ -99,22 +99,24 @@
                 android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
                 android:text="Sufficent for:"
                 android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@+id/txDIncludes"
                 app:layout_constraintStart_toEndOf="@+id/txtDFoodType"
                 app:layout_constraintTop_toBottomOf="@+id/txtDAdd" />
 
             <TextView
                 android:id="@+id/txDIncludes"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
                 android:text="365"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/textView21"
+                app:layout_constraintEnd_toStartOf="@+id/textView25"
                 app:layout_constraintTop_toBottomOf="@+id/txtDAdd" />
 
             <TextView

@@ -52,6 +52,8 @@ public class Community extends AppCompatActivity {
         imagedb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
                     String imageUrl = dataSnapshot.child("imager").getValue().toString();

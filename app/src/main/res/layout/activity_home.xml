@@ -20,14 +20,13 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"
-        android:layout_height="191dp"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="145dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@mipmap/logo" />
 
     <TextView
         android:id="@+id/txtLogin"
@@ -44,11 +43,11 @@
         android:id="@+id/introduction"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="monospace"
         android:gravity="center"
-        android:text="When we waste food, we waste the labour, effort, investment and precious resources (like water, seeds, feed, etc.) that go into producing it, not to mention the resources that go into transporting and processing it. In short, wasting food increases greenhouse gas emissions and contributes to climate change.Join us in the inisiative down here."
+        android:text="Start your journey of transforming ordinary leftovers into meals through LeftOver's "
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:emojiCompatEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"

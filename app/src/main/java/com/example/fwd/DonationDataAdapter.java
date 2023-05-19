@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -24,7 +25,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DonationDataAdapter extends RecyclerView.Adapter<DonationDataAdapter.DonationViewHolder> {
 
@@ -49,6 +53,7 @@ public class DonationDataAdapter extends RecyclerView.Adapter<DonationDataAdapte
         return  new DonationViewHolder(v);
 
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull DonationViewHolder holder, int position) {
@@ -161,14 +166,36 @@ public class DonationDataAdapter extends RecyclerView.Adapter<DonationDataAdapte
 //        GETTING KEY AND CHANGING STATUS ON BUTTON CLICKFINISHED
 
 
+
+//        String input = keyboard.next();
+
+//        String input = holder.Totime.getText().toString();
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+//        simpleDateFormat.setLenient(false);
+//
+//        try {
+//            Date expiry = simpleDateFormat.parse(input);
+//            boolean expired = expiry.before(new Date());
+//
+//            if (expired) {
+////                Toast.makeText(context, ""+expiry, Toast.LENGTH_SHORT).show();
+//
+//                holder.Status.setText("Expired");
+//            }
+//        } catch (ParseException e) {
+//            // Handle the ParseException here, such as displaying an error message or taking alternative actions.
+//            e.printStackTrace();
+//        }
+
+
 //        CHANGING COLOR OF CARD ON STATUS CHANGED
         if (holder.Status.getText().equals("Assigned")){
             holder.crdDonationDetails.setBackgroundResource(R.color.light_grey);
 //            holder.crdDonationDetails.setVisibility(View.GONE);
         }
         else if(holder.Status.getText().equals("Expired")){
-            holder.crdDonationDetails.setBackgroundResource(R.color.exceeded_color);
-//            holder.crdDonationDetails.setVisibility(View.VISIBLE);
+
+            holder.crdDonationDetails.setVisibility(View.VISIBLE);
         }else{
             holder.crdDonationDetails.setBackgroundResource(R.color.default_card);
 //            holder.crdDonationDetails.setVisibility(View.GONE);

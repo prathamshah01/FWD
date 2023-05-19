@@ -24,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                SharedPreferences sharedPreferences = getSharedPreferences("Leftovers", Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getSharedPreferences("splash", Context.MODE_PRIVATE);
 
 
                boolean isLogin = sharedPreferences.getBoolean("isLogin",false);
