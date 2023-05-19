@@ -8,12 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fwd.databinding.FragmentHistoryBinding;
-
 
 public class HistoryFragment extends Fragment {
-
-    private FragmentHistoryBinding binding;
 
 
     public HistoryFragment() {
@@ -21,18 +17,18 @@ public class HistoryFragment extends Fragment {
     }
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-    }
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+
+//        }
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FragmentHistoryBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-
+        return inflater.inflate(R.layout.fragment_history, container, false);
     }
 }

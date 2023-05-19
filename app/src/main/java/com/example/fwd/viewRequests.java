@@ -63,6 +63,8 @@ public class viewRequests extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                list.clear();
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
                     String name = dataSnapshot.child("name").getValue().toString();
