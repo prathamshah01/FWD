@@ -7,18 +7,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
 import android.net.Uri;
-import android.os.Handler;
-import android.provider.CallLog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -29,13 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Locale;
 
 public class DonationDataAdapter extends RecyclerView.Adapter<DonationDataAdapter.DonationViewHolder> {
 
@@ -214,7 +203,7 @@ public class DonationDataAdapter extends RecyclerView.Adapter<DonationDataAdapte
             ibMap = itemView.findViewById(R.id.ibMap);
             btnConfirm = itemView.findViewById(R.id.btnConfirm);
             crdDonationDetails = itemView.findViewById(R.id.crdDonationDetails);
-            Status = itemView.findViewById(R.id.txtDStatus);
+            Status = itemView.findViewById(R.id.txtHStatus);
             myKey = itemView.findViewById(R.id.txtKey);
         }
     }

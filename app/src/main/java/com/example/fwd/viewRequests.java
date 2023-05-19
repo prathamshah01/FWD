@@ -32,9 +32,7 @@ public class viewRequests extends AppCompatActivity {
     DonationDataAdapter MyAdapter;
     ArrayList<Donator> list= new ArrayList<>();;
     CheckInternet internet = new CheckInternet();
-    private Handler handler;
-    private Runnable runnable;
-    private static final int CHECK_INTERVAL = 3000; // 3 seconds
+
 
 
 
